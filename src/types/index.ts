@@ -24,5 +24,6 @@ export interface WebProject {
     githubUrl?: string;
     imageUrl: string; // Renamed from screenshotUrl to match usage
     role?: string;
+    impact?: string;
     createdAt?: any;
 }

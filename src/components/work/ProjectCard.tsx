@@ -17,14 +17,12 @@ export function ProjectCard({ project }: ProjectCardProps) {
             {/* Thumbnail */}
             <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-neutral-900 border border-white/5">
                 <Image
-                    src={project.screenshotUrl || "/placeholder-project.jpg"}
+                    src={project.imageUrl || "/placeholder-project.jpg"}
                     alt={project.title}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />
-
-
             </div>
 
             {/* Content */}
@@ -52,7 +50,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 )}
 
                 <p className="text-gray-400 text-sm line-clamp-3">
-                    {project.caseStudy ? project.caseStudy.substring(0, 100) + "..." : "No description available."}
+                    {project.description || "No description available."}
                 </p>
 
                 {/* Actions */}

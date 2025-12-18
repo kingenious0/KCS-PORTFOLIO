@@ -16,10 +16,21 @@ export function useProjects() {
 
         const unsubscribe = onSnapshot(q,
             (snapshot) => {
-                const projectData = snapshot.docs.map((doc) => ({
-                    id: doc.id,
-                    ...doc.data(),
-                })) as WebProject[];
+                const projectData = snapshot.docs.map((doc) => {
+                    const data = doc.data();
+                    return {
+                        id: doc.id,
+                        title: data.title || "",
+                        description: data.description || data.landingPageDesc || "", // Handle variations
+                        techStack: data.techStack || [],
+                        liveUrl: data.liveUrl,
+                        githubUrl: data.githubUrl,
+                        imageUrl: data.imageUrl || data.screenshotUrl || "", // BACKWARDS COMPATIBILITY
+                        role: data.role,
+                        impact: data.impact,
+                        createdAt: data.createdAt,
+                    } as WebProject;
+                });
                 setProjects(projectData);
                 setLoading(false);
             },
