@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@theme {
+  --color-neon-blue: #00f3ff;
+  --color-neon-purple: #bc13fe;
+  --color-neon-green: #0aff0a;
+  --color-dark-bg: #050505;
+  --color-glass-border: rgba(255, 255, 255, 0.1);
+  --color-glass-bg: rgba(255, 255, 255, 0.05);
+
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-outfit);
+}
+
+:root {
+  /* Light Mode (Default) */
+  --background: #ffffff;
+  --foreground: #050505;
+  --color-glass-bg: rgba(0, 0, 0, 0.05);
+  --color-glass-border: rgba(0, 0, 0, 0.1);
+  --color-neon-blue: #007075;
+  /* Darker blue for visibility on white */
+  --color-neon-purple: #8a0cb8;
+  --color-neon-green: #06a006;
+}
+
+.dark {
+  /* Dark Mode */
+  --background: #050505;
+  --foreground: #ffffff;
+  --color-glass-bg: rgba(255, 255, 255, 0.05);
+  --color-glass-border: rgba(255, 255, 255, 0.1);
+  --color-neon-blue: #00f3ff;
+  --color-neon-purple: #bc13fe;
+  --color-neon-green: #0aff0a;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+@utility glass {
+  background: var(--color-glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-glass-border);
+}
+
+@utility text-glow {
+  text-shadow: 0 0 10px currentColor;
+}
+
+@utility neo-border {
+  border: 1px solid var(--color-neon-blue);
+  box-shadow: 0 0 5px var(--color-neon-blue), inset 0 0 5px var(--color-neon-blue);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
