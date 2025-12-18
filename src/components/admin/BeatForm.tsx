@@ -64,7 +64,13 @@ export function BeatForm({ initialData, onSuccess, onCancel }: BeatFormProps) {
         }
     }, [initialData]);
 
-    if (!user) return null;
+    if (!user) {
+        return (
+            <div className="text-center p-6 text-red-400 border border-red-500/20 bg-red-500/10 rounded-lg">
+                Please log in to manage beats.
+            </div>
+        );
+    }
 
     const handleAnalyzeAudio = async () => {
         if (!audioFile) {

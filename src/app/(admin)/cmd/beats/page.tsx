@@ -34,11 +34,11 @@ export default function ManageBeatsPage() {
 
                 {/* Header & Form Section */}
                 <div>
-                    <div className="flex items-center gap-4 mb-8">
+                    <div className="flex flex-col items-start sm:flex-row sm:items-center gap-4 mb-8">
                         <Button variant="ghost" size="sm" onClick={() => router.push('/cmd')}>
                             <ArrowLeft className="w-4 h-4 mr-2" /> Back
                         </Button>
-                        <h1 className="text-3xl font-bold text-neon-blue">
+                        <h1 className="text-2xl sm:text-3xl font-bold text-neon-blue">
                             {editingBeat ? `Edit: ${editingBeat.title}` : "Manage Beats"}
                         </h1>
                     </div>
@@ -66,13 +66,13 @@ export default function ManageBeatsPage() {
                     ) : (
                         <div className="grid gap-4">
                             {beats.map((beat) => (
-                                <div key={beat.id} className={`flex items-center justify-between p-4 border rounded-lg transition-colors group ${editingBeat?.id === beat.id ? 'bg-neon-blue/10 border-neon-blue' : 'bg-neutral-900 border-white/5 hover:border-neon-blue/30'}`}>
+                                <div key={beat.id} className={`flex flex-col sm:flex-row sm:items-center justify-between p-4 border rounded-lg transition-colors group gap-4 sm:gap-0 ${editingBeat?.id === beat.id ? 'bg-neon-blue/10 border-neon-blue' : 'bg-neutral-900 border-white/5 hover:border-neon-blue/30'}`}>
                                     <div className="flex items-center gap-4">
-                                        <div className="w-10 h-10 bg-neutral-800 rounded flex items-center justify-center">
+                                        <div className="w-10 h-10 bg-neutral-800 rounded flex items-center justify-center shrink-0">
                                             <Play className="w-4 h-4 text-neon-blue" />
                                         </div>
-                                        <div>
-                                            <h3 className="font-bold text-white">{beat.title}</h3>
+                                        <div className="min-w-0">
+                                            <h3 className="font-bold text-white truncate">{beat.title}</h3>
                                             <div className="flex gap-2 text-xs text-gray-400">
                                                 <span>{beat.bpm} BPM</span>
                                                 <span>•</span>
@@ -81,8 +81,8 @@ export default function ManageBeatsPage() {
                                         </div>
                                     </div>
 
-                                    <div className="flex items-center gap-4">
-                                        <div className="text-right hidden sm:block">
+                                    <div className="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto">
+                                        <div className="text-right block">
                                             <div className="text-neon-green font-mono font-bold">${beat.price}</div>
                                         </div>
 
