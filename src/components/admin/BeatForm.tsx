@@ -9,7 +9,7 @@ import { Loader2, Music, Image as ImageIcon, CheckCircle, X, Sparkles } from "lu
 import { useRouter } from "next/navigation";
 import { Beat } from "@/types";
 import { parseBlob } from "music-metadata-browser";
-import { TapTempo } from "./TapTempo";
+
 import * as beatDetector from 'web-audio-beat-detector';
 
 interface BeatFormProps {
@@ -278,17 +278,13 @@ export function BeatForm({ initialData, onSuccess, onCancel }: BeatFormProps) {
                 <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-1">
                         <label className="block text-xs font-mono text-gray-400 uppercase tracking-wider">BPM</label>
-                        <div className="flex gap-2">
-                            <Input
-                                value={formData.bpm}
-                                onChange={(e) => setFormData({ ...formData, bpm: e.target.value })}
-                                required
-                                type="number"
-                                className="!mt-0 w-full"
-                            />
-                            {/* Tap Tempo Button */}
-                            <TapTempo onBpmDetected={(bpm) => setFormData(prev => ({ ...prev, bpm: bpm.toString() }))} />
-                        </div>
+                        <Input
+                            value={formData.bpm}
+                            onChange={(e) => setFormData({ ...formData, bpm: e.target.value })}
+                            required
+                            type="number"
+                            className="!mt-0 w-full"
+                        />
                     </div>
 
                     <Input

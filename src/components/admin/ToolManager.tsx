@@ -81,7 +81,10 @@ export function ToolManager({ id, defaultValue, colorClass }: ToolManagerProps) 
             data.append("folder", "portfolio/tools");
 
             const res = await fetch("/api/upload", { method: "POST", body: data });
-            if (!res.ok) throw new Error("Upload failed");
+            if (!res.ok) {
+                const errorData = await res.json().catch(() => ({}));
+                throw new Error(errorData.error || "Upload failed");
+            }
 
             const json = await res.json();
 
@@ -92,7 +95,7 @@ export function ToolManager({ id, defaultValue, colorClass }: ToolManagerProps) 
 
         } catch (err) {
             console.error(err);
-            alert("Upload failed");
+            alert(err instanceof Error ? err.message : "Upload failed");
         } finally {
             setIsUploading(null);
         }
