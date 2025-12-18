@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useAuth } from "@/lib/AuthContext";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
+import { EditableImage } from "@/components/admin/EditableImage";
 import { Lock, Unlock, Upload, Database, Settings, LogOut } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -108,6 +109,52 @@ export default function AdminPage() {
                     <Settings className="w-8 h-8 text-yellow-500 mb-4 group-hover:rotate-90 transition-transform duration-500" />
                     <h3 className="text-xl font-bold mb-2">Site Config</h3>
                     <p className="text-sm text-gray-400">Global variables and toggles.</p>
+                </div>
+            </div>
+
+            {/* Page Content Management Section */}
+            <div className="mt-12">
+                <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                    <span className="w-2 h-8 bg-neon-blue rounded-full" />
+                    Page Content
+                </h2>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* About Section Card */}
+                    <div className="p-6 rounded-xl border border-white/10 bg-white/5 relative overflow-hidden">
+                        <div className="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
+                            <h3 className="text-6xl font-black text-white uppercase transform rotate-12">About</h3>
+                        </div>
+
+                        <h3 className="text-xl font-bold mb-4 z-10 relative text-neon-blue">About Section</h3>
+
+                        <div className="flex items-start gap-6 relative z-10">
+                            <div className="space-y-4 flex-1">
+                                <p className="text-sm text-gray-400">Manage your personal profile visuals.</p>
+
+                                <div className="space-y-1">
+                                    <div className="text-xs uppercase tracking-widest text-gray-500 font-bold">Current Asset</div>
+                                    <div className="text-xs text-neon-blue border border-neon-blue/30 bg-neon-blue/5 px-2 py-1 rounded inline-block">
+                                        Profile Image
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* The Image Uploader */}
+                            <div className="flex flex-col items-center gap-2">
+                                <div className="relative w-32 h-32 rounded-lg overflow-hidden border-2 border-dashed border-white/20 shrink-0 bg-black/20 group hover:border-neon-blue/50 transition-colors">
+                                    <EditableImage
+                                        id="aboutProfileImage"
+                                        defaultSrc="https://res.cloudinary.com/dthdohxgs/image/upload/v1766044744/portfolio/profile-placeholder.jpg"
+                                        alt="Admin Profile Preview"
+                                        fill
+                                        className="object-cover"
+                                    />
+                                </div>
+                                <span className="text-[10px] text-gray-500 uppercase tracking-wider">Click to Edit</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 

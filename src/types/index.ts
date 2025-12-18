@@ -9,18 +9,20 @@ export interface Beat {
     audioUrl: string;
     coverUrl: string;
     stemsAvailable: boolean;
+    producedBy?: string; // Default: KCS
+    artist?: string;
+    type?: "Beat" | "Remix" | "Full Song" | "Other";
     createdAt?: any; // Firestore Timestamp
 }
 
 export interface WebProject {
     id: string;
     title: string;
+    description: string; // Added missing field used in code
     techStack: string[];
     liveUrl?: string;
     githubUrl?: string;
-    caseStudy?: string; // Rich text or markdown
-    screenshotUrl: string;
-    impact?: string;
+    imageUrl: string; // Renamed from screenshotUrl to match usage
     role?: string;
     createdAt?: any;
 }

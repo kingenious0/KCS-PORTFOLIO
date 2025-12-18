@@ -34,5 +34,5 @@ export function useBeats() {
         return () => unsubscribe();
     }, []);
 
-    return { beats, loading, error };
+    return { beats, loading, error, createBeat, updateBeat, deleteBeat };
 }

@@ -50,7 +50,7 @@ export function BeatCard({ beat, isPlaying, onPlay, onPause }: BeatCardProps) {
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100 backdrop-blur-[2px]">
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors flex items-center justify-center opacity-100 lg:opacity-0 lg:group-hover:opacity-100 backdrop-blur-[2px]">
                     <button
                         onClick={isPlaying ? onPause : onPlay}
                         className="w-16 h-16 rounded-full bg-neon-blue text-black flex items-center justify-center shadow-[0_0_20px_rgba(0,243,255,0.5)] hover:scale-110 transition-transform"

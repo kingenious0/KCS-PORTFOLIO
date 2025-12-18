@@ -32,7 +32,7 @@ function EditableButton({ id, defaultUrl, defaultLabel, icon: Icon, variant = "n
             {user && (
                 <button
                     onClick={handleEditUrl}
-                    className="absolute -top-3 -right-3 z-20 p-1.5 bg-black border border-neon-blue rounded-full text-neon-blue hover:scale-110 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="absolute -top-3 -right-3 z-20 p-1.5 bg-black border border-neon-blue rounded-full text-neon-blue hover:scale-110 shadow-lg opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity"
                     title="Edit Link URL"
                 >
                     <LinkIcon className="w-3 h-3" />

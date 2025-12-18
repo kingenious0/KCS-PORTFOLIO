@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { WebProject } from "@/types";
 import { onSnapshot, collection, query, orderBy } from "firebase/firestore";
 import { db } from "@/lib/firebase";
+import { deleteProject } from "@/lib/db";
 
 export function useProjects() {
     const [projects, setProjects] = useState<WebProject[]>([]);
@@ -32,5 +33,5 @@ export function useProjects() {
         return () => unsubscribe();
     }, []);
 
-    return { projects, loading, error };
+    return { projects, loading, error, deleteProject };
 }
