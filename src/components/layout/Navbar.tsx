@@ -71,7 +71,7 @@ export function Navbar() {
                         <BrandInitials className="text-xl tracking-tighter" />
                     </div>
                     <span className="font-bold text-lg text-white hidden md:block tracking-wide group-hover:text-neon-blue transition-colors">
-                        <InlineText id="brandName" defaultValue="ELITE HYBRID" />
+                        <InlineText id="brandName" defaultValue="KINGENIOUS WORKS" />
                     </span>
                 </Link>
 

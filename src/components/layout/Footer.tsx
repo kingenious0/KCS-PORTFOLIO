@@ -17,13 +17,13 @@ export function Footer() {
                         <BrandInitials className="text-sm" />
                     </div>
                     <span className="font-bold text-md text-white/50 tracking-wide">
-                        <InlineText id="brandName" defaultValue="ELITE HYBRID" />
+                        <InlineText id="brandName" defaultValue="KINGENIOUS WORKS" />
                     </span>
                 </div>
 
                 {/* Copyright */}
                 <div className="text-sm text-gray-500 font-medium">
-                    &copy; {currentYear} <InlineText id="brandName" defaultValue="ELITE HYBRID" />. All rights reserved.
+                    &copy; {currentYear} <InlineText id="brandName" defaultValue="KINGENIOUS WORKS" />. All rights reserved.
                 </div>
             </div>
         </footer>

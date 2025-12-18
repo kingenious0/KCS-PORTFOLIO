@@ -19,7 +19,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Elite Hybrid | Beatmaker & Developer",
+  title: "KINGENIOUS WORKS | Beatmaker & Developer",
   description: "A high-performance portfolio for a Beatmaker & Web Developer.",
 };
 

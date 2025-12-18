@@ -7,7 +7,7 @@ interface BrandInitialsProps {
     className?: string;
 }
 
-export function BrandInitials({ defaultValue = "ELITE HYBRID", className }: BrandInitialsProps) {
+export function BrandInitials({ defaultValue = "KINGENIOUS WORKS", className }: BrandInitialsProps) {
     const { content } = useContent();
 
     // Parse content safely to handle potentially JSON-stored text (from InlineText)

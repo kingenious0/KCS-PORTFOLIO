@@ -1,4 +1,4 @@
-# Elite Hybrid | Beatmaker & Developer Portfolio
+# KINGENIOUS WORKS | Beatmaker & Developer Portfolio
 
 A high-performance, futuristic portfolio built with Next.js 15, Tailwind CSS, and Firebase.
 

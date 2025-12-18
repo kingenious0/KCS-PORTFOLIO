@@ -25,7 +25,7 @@ export default function Home() {
         >
           <InlineText
             id="heroTitle"
-            defaultValue="ELITE HYBRID"
+            defaultValue="KINGENIOUS WORKS"
             className="font-black tracking-tighter text-neutral-900 dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-neon-blue dark:via-white dark:to-neon-purple pb-2"
           />
         </motion.h1>

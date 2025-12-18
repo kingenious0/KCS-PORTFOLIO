@@ -85,7 +85,7 @@ export function ContactSection() {
                     <div className="flex flex-wrap justify-center gap-6 mb-20">
                         <EditableButton
                             id="btnEmail"
-                            defaultUrl="mailto:contact@elitehybrid.com"
+                            defaultUrl="mailto:kingenious0@gmail.com"
                             defaultLabel="Email Me"
                             icon={Mail}
                             variant="neon"
