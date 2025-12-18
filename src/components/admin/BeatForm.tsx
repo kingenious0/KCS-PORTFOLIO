@@ -284,7 +284,7 @@ export function BeatForm({ initialData, onSuccess, onCancel }: BeatFormProps) {
                                 onChange={(e) => setFormData({ ...formData, bpm: e.target.value })}
                                 required
                                 type="number"
-                                className="!mt-0 flex-1"
+                                className="!mt-0 w-full"
                             />
                             {/* Tap Tempo Button */}
                             <TapTempo onBpmDetected={(bpm) => setFormData(prev => ({ ...prev, bpm: bpm.toString() }))} />
@@ -299,7 +299,7 @@ export function BeatForm({ initialData, onSuccess, onCancel }: BeatFormProps) {
                 </div>
 
                 <Input
-                    label="Price ($)"
+                    label="Price GH¢"
                     type="number"
                     value={formData.price}
                     onChange={(e) => setFormData({ ...formData, price: e.target.value })}
@@ -350,9 +350,9 @@ export function BeatForm({ initialData, onSuccess, onCancel }: BeatFormProps) {
                             onChange={(e) => e.target.files?.[0] && handleUpload(e.target.files[0], "audioUrl")}
                             className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
                         />
-                        <div className={`flex items-center justify-center p-4 border-2 border-dashed rounded-lg transition-colors ${formData.audioUrl ? 'border-neon-green bg-neon-green/10' : 'border-white/20 group-hover:border-neon-blue'}`}>
+                        <div className={`flex items-center justify-center p-6 border-2 border-dashed rounded-lg transition-colors cursor-pointer ${formData.audioUrl ? 'border-neon-green bg-neon-green/10' : 'border-white/20 group-hover:border-neon-blue'}`}>
                             {loading ? <Loader2 className="animate-spin text-neon-blue" /> : formData.audioUrl ? <CheckCircle className="text-neon-green" /> : <Music className="text-gray-400" />}
-                            <span className="ml-2 text-sm text-gray-400 truncate max-w-[150px]">{formData.audioUrl ? "Audio Ready" : "Select Audio"}</span>
+                            <span className="ml-2 text-sm text-gray-400 truncate max-w-[200px]">{formData.audioUrl ? "Audio Ready" : "Select Audio File"}</span>
                         </div>
                     </div>
                     {/* Analyze Button - Only show if audio file is present */}
@@ -386,7 +386,7 @@ export function BeatForm({ initialData, onSuccess, onCancel }: BeatFormProps) {
                             onChange={(e) => e.target.files?.[0] && handleUpload(e.target.files[0], "coverUrl")}
                             className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
                         />
-                        <div className={`flex items-center justify-center p-4 border-2 border-dashed rounded-lg transition-colors ${formData.coverUrl ? 'border-neon-green bg-neon-green/10' : 'border-white/20 group-hover:border-neon-blue'}`}>
+                        <div className={`flex items-center justify-center p-6 border-2 border-dashed rounded-lg transition-colors cursor-pointer ${formData.coverUrl ? 'border-neon-green bg-neon-green/10' : 'border-white/20 group-hover:border-neon-blue'}`}>
                             {loading ? <Loader2 className="animate-spin text-neon-blue" /> : formData.coverUrl ? <CheckCircle className="text-neon-green" /> : <ImageIcon className="text-gray-400" />}
                             <span className="ml-2 text-sm text-gray-400">{formData.coverUrl ? "Cover Ready" : "Default: Lion"}</span>
                         </div>

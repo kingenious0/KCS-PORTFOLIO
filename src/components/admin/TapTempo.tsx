@@ -51,10 +51,10 @@ export function TapTempo({ onBpmDetected }: TapTempoProps) {
             variant="ghost" // Changed to ghost to be subtle
             size="sm"
             onClick={handleTap}
-            className="flex flex-col items-center justify-center p-2 h-auto ml-2 border border-white/10 hover:bg-white/10 active:scale-95 transition-all"
+            className="flex items-center justify-center px-4 h-10 ml-2 border border-white/10 hover:bg-white/10 active:scale-95 transition-all min-w-[100px]"
             title="Tap standard beat to set BPM"
         >
-            <div className="flex items-center gap-1 text-xs text-neon-blue font-bold tracking-widest uppercase">
+            <div className="flex items-center gap-2 text-xs text-neon-blue font-bold tracking-widest uppercase">
                 <Hand className="w-3 h-3" />
                 Tap BPM
             </div>
