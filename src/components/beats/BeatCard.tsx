@@ -15,8 +15,11 @@ interface BeatCardProps {
     onPause: () => void;
 }
 
+import { BeatDetailsModal } from "./BeatDetailsModal";
+
 export function BeatCard({ beat, isPlaying, onPlay, onPause }: BeatCardProps) {
     const [isDownloading, setIsDownloading] = useState(false);
+    const [showDetails, setShowDetails] = useState(false);
 
     const handleDownload = async () => {
         try {
@@ -85,7 +88,7 @@ export function BeatCard({ beat, isPlaying, onPlay, onPause }: BeatCardProps) {
 
             {/* Actions */}
             <div className="grid grid-cols-2 gap-2 mt-2">
-                <Button variant="ghost" size="sm" className="w-full text-xs">
+                <Button variant="ghost" size="sm" className="w-full text-xs" onClick={() => setShowDetails(true)}>
                     <Info className="w-3 h-3 mr-1" /> Details
                 </Button>
                 {beat.price === 0 ? (
@@ -108,6 +111,16 @@ export function BeatCard({ beat, isPlaying, onPlay, onPause }: BeatCardProps) {
                     </Button>
                 )}
             </div>
-        </Card>
+
+
+            {/* Details Modal */}
+            <BeatDetailsModal
+                beat={beat}
+                isOpen={showDetails}
+                onClose={() => setShowDetails(false)}
+                isPlaying={isPlaying}
+                onPlayPause={isPlaying ? onPause : onPlay}
+            />
+        </Card >
     );
 }
