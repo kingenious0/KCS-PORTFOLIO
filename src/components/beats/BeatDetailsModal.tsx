@@ -3,7 +3,7 @@
 import { Beat } from "@/types";
 import { Modal } from "@/components/ui/Modal";
 import { Button } from "@/components/ui/Button";
-import { Play, Pause, Download, ShoppingCart, Music, User, Clock, key } from "lucide-react";
+import { Play, Pause, Download, ShoppingCart, Music, User, Clock } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
