@@ -5,6 +5,7 @@ import { AuthProvider } from "@/lib/AuthContext";
 import { ContentProvider } from "@/lib/ContentContext";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { Footer } from "@/components/layout/Footer";
+import { VisitorTracker } from "@/components/layout/VisitorTracker";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -41,6 +42,7 @@ export default function RootLayout({
             <ContentProvider>
               {children}
               <Footer />
+              <VisitorTracker />
             </ContentProvider>
           </AuthProvider>
         </ThemeProvider>

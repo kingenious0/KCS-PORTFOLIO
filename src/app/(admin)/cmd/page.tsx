@@ -110,6 +110,18 @@ export default function AdminPage() {
                     <h3 className="text-xl font-bold mb-2">Site Config</h3>
                     <p className="text-sm text-gray-400">Global variables and toggles.</p>
                 </div>
+
+                <div
+                    onClick={() => router.push('/cmd/visitors')}
+                    className="p-6 rounded-xl border border-white/10 bg-white/5 hover:border-neon-pink/30 transition-colors cursor-pointer group"
+                >
+                    <div className="w-8 h-8 text-neon-pink mb-4 group-hover:scale-110 transition-transform">
+                        {/* Eye icon manually since we didn't import Eye and want to avoid import errors if not present */}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-eye"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" /><circle cx="12" cy="12" r="3" /></svg>
+                    </div>
+                    <h3 className="text-xl font-bold mb-2">Visitor Logs</h3>
+                    <p className="text-sm text-gray-400">Track who is viewing your work.</p>
+                </div>
             </div>
 
 
