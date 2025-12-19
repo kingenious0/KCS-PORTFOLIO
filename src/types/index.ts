@@ -26,5 +26,6 @@ export interface WebProject {
     imageUrl: string; // Renamed from screenshotUrl to match usage
     role?: string;
     impact?: string;
+    isLocked?: boolean;
     createdAt?: any;
 }

@@ -28,6 +28,7 @@ export function useProjects() {
                         imageUrl: data.imageUrl || data.screenshotUrl || "", // BACKWARDS COMPATIBILITY
                         role: data.role,
                         impact: data.impact,
+                        isLocked: data.isLocked || false,
                         createdAt: data.createdAt,
                     } as WebProject;
                 });

@@ -5,7 +5,7 @@ import { useAuth } from "@/lib/AuthContext";
 import { createProject, updateProject } from "@/lib/db";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
-import { Loader2, Image as ImageIcon, CheckCircle, X } from "lucide-react";
+import { Loader2, Image as ImageIcon, CheckCircle, X, Wand2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { WebProject } from "@/types";
 
@@ -20,11 +20,13 @@ export function ProjectForm({ initialData, onSuccess, onCancel }: ProjectFormPro
     const router = useRouter();
 
     const [loading, setLoading] = useState(false);
+    const [screenshotLoading, setScreenshotLoading] = useState(false);
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState("");
 
     const [formData, setFormData] = useState({
         title: "",
+        isLocked: false,
         techStack: "",
         landingPageDesc: "",
         liveUrl: "",
@@ -39,6 +41,7 @@ export function ProjectForm({ initialData, onSuccess, onCancel }: ProjectFormPro
         if (initialData) {
             setFormData({
                 title: initialData.title,
+                isLocked: initialData.isLocked || false,
                 techStack: initialData.techStack.join(", "),
                 landingPageDesc: initialData.description || "",
                 liveUrl: initialData.liveUrl || "",
@@ -78,6 +81,37 @@ export function ProjectForm({ initialData, onSuccess, onCancel }: ProjectFormPro
         }
     };
 
+    const handleAutoScreenshot = async () => {
+        if (!formData.liveUrl) {
+            setError("Please enter a Live URL first.");
+            return;
+        }
+
+        try {
+            setScreenshotLoading(true);
+            setError("");
+
+            const res = await fetch("/api/screenshot", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ url: formData.liveUrl }),
+            });
+
+            const json = await res.json();
+
+            if (!res.ok) {
+                throw new Error(json.error || "Failed to generate screenshot");
+            }
+
+            setFormData(prev => ({ ...prev, imageUrl: json.url }));
+        } catch (err) {
+            console.error(err);
+            setError(err instanceof Error ? err.message : "Screenshot generation failed");
+        } finally {
+            setScreenshotLoading(false);
+        }
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!formData.imageUrl) {
@@ -91,6 +125,7 @@ export function ProjectForm({ initialData, onSuccess, onCancel }: ProjectFormPro
         try {
             const projectData = {
                 title: formData.title,
+                isLocked: formData.isLocked,
                 techStack: formData.techStack.split(",").map(s => s.trim()).filter(Boolean),
                 description: formData.landingPageDesc, // Using this for the card description
                 liveUrl: formData.liveUrl,
@@ -112,6 +147,7 @@ export function ProjectForm({ initialData, onSuccess, onCancel }: ProjectFormPro
                 if (!initialData) {
                     setFormData({
                         title: "",
+                        isLocked: false,
                         techStack: "",
                         landingPageDesc: "",
                         liveUrl: "",
@@ -170,11 +206,29 @@ export function ProjectForm({ initialData, onSuccess, onCancel }: ProjectFormPro
                     required
                     className="md:col-span-2"
                 />
-                <Input
-                    label="Live URL (Optional)"
-                    value={formData.liveUrl}
-                    onChange={(e) => setFormData({ ...formData, liveUrl: e.target.value })}
-                />
+                <div className="md:col-span-1 space-y-2">
+                    <Input
+                        label="Live URL (Optional)"
+                        value={formData.liveUrl}
+                        onChange={(e) => setFormData({ ...formData, liveUrl: e.target.value })}
+                        disabled={screenshotLoading}
+                    />
+                    <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        onClick={handleAutoScreenshot}
+                        disabled={!formData.liveUrl || screenshotLoading}
+                        className="text-neon-purple items-center flex gap-1 w-full border border-neon-purple/30 hover:bg-neon-purple/10"
+                    >
+                        {screenshotLoading ? (
+                            <Loader2 className="w-3 h-3 animate-spin" />
+                        ) : (
+                            <Wand2 className="w-3 h-3" />
+                        )}
+                        {screenshotLoading ? "Capturing Site..." : "Auto-Capture Screenshot"}
+                    </Button>
+                </div>
                 <Input
                     label="GitHub URL (Optional)"
                     value={formData.githubUrl}
@@ -186,6 +240,24 @@ export function ProjectForm({ initialData, onSuccess, onCancel }: ProjectFormPro
                     onChange={(e) => setFormData({ ...formData, role: e.target.value })}
                     placeholder="Lead Developer, UI Designer..."
                 />
+
+                <div className="md:col-span-2 flex items-center space-x-3 bg-white/5 p-4 rounded-lg border border-white/10">
+                    <input
+                        type="checkbox"
+                        id="isLocked"
+                        checked={formData.isLocked}
+                        onChange={(e) => setFormData({ ...formData, isLocked: e.target.checked })}
+                        className="w-5 h-5 accent-neon-purple rounded cursor-pointer"
+                    />
+                    <div className="flex flex-col">
+                        <label htmlFor="isLocked" className="text-sm font-bold text-white cursor-pointer select-none">
+                            Work in Progress Lock
+                        </label>
+                        <span className="text-xs text-gray-400">
+                            If enabled, the Live Demo link will show a screenshot popup instead of navigating.
+                        </span>
+                    </div>
+                </div>
             </div>
 
             <div className="space-y-2 pt-4 border-t border-white/10">
