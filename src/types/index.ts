@@ -12,6 +12,7 @@ export interface Beat {
     producedBy?: string; // Default: KCS
     artist?: string;
     type?: "Beat" | "Remix" | "Full Song" | "Other";
+    currency?: string; // e.g. "USD", "GHS"
     createdAt?: any; // Firestore Timestamp
 }
 

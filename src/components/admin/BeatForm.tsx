@@ -42,7 +42,8 @@ export function BeatForm({ initialData, onSuccess, onCancel }: BeatFormProps) {
         stemsAvailable: false,
         producedBy: "Kingenious",
         artist: "",
-        type: "Beat"
+        type: "Beat",
+        currency: "GH¢"
     });
 
     useEffect(() => {
@@ -52,6 +53,7 @@ export function BeatForm({ initialData, onSuccess, onCancel }: BeatFormProps) {
                 bpm: initialData.bpm.toString(),
                 key: initialData.key,
                 price: initialData.price.toString(),
+                currency: initialData.currency || "GH¢",
                 genre: initialData.genre.join(", "),
                 mood: initialData.mood.join(", "),
                 audioUrl: initialData.audioUrl,
@@ -185,6 +187,7 @@ export function BeatForm({ initialData, onSuccess, onCancel }: BeatFormProps) {
                 bpm: Number(formData.bpm),
                 key: formData.key,
                 price: Number(formData.price),
+                currency: formData.currency,
                 genre: formData.genre.split(",").map(s => s.trim()).filter(Boolean),
                 mood: formData.mood.split(",").map(s => s.trim()).filter(Boolean),
                 audioUrl: formData.audioUrl,
@@ -217,7 +220,8 @@ export function BeatForm({ initialData, onSuccess, onCancel }: BeatFormProps) {
                         stemsAvailable: false,
                         producedBy: "Kingenious",
                         artist: "",
-                        type: "Beat"
+                        type: "Beat",
+                        currency: "GH¢"
                     });
                     setAudioFile(null);
                 }
@@ -294,13 +298,31 @@ export function BeatForm({ initialData, onSuccess, onCancel }: BeatFormProps) {
                     />
                 </div>
 
-                <Input
-                    label="Price GH¢"
-                    type="number"
-                    value={formData.price}
-                    onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                    required
-                />
+                <div className="flex gap-2">
+                    <div className="w-1/3">
+                        <label className="block text-xs font-mono text-gray-400 uppercase tracking-wider mb-2">Currency</label>
+                        <select
+                            value={formData.currency}
+                            onChange={(e) => setFormData({ ...formData, currency: e.target.value })}
+                            className="w-full bg-black/50 border border-white/10 rounded-md p-2 text-white focus:border-neon-blue outline-none"
+                        >
+                            <option value="GH¢">GH¢</option>
+                            <option value="$">USD ($)</option>
+                            <option value="₦">NGN (₦)</option>
+                            <option value="£">GBP (£)</option>
+                            <option value="€">EUR (€)</option>
+                        </select>
+                    </div>
+                    <div className="w-2/3">
+                        <Input
+                            label="Price"
+                            type="number"
+                            value={formData.price}
+                            onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+                            required
+                        />
+                    </div>
+                </div>
 
                 <Input
                     label="Produced By"

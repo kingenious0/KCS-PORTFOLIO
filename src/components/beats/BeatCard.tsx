@@ -68,7 +68,7 @@ export function BeatCard({ beat, isPlaying, onPlay, onPause }: BeatCardProps) {
                 <div className="flex justify-between items-start">
                     <h3 className="font-bold text-lg leading-tight truncate pr-2">{beat.title}</h3>
                     <span className={cn("font-mono font-bold", beat.price === 0 ? "text-neon-green" : "text-neon-blue")}>
-                        {beat.price === 0 ? "FREE" : `$${beat.price}`}
+                        {beat.price === 0 ? "FREE" : `${beat.currency || "GH¢"}${beat.price}`}
                     </span>
                 </div>
                 <div className="flex items-center gap-3 text-xs text-gray-400 font-mono">

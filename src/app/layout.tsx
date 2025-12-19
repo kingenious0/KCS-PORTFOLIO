@@ -6,6 +6,7 @@ import { ContentProvider } from "@/lib/ContentContext";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { Footer } from "@/components/layout/Footer";
 import { VisitorTracker } from "@/components/layout/VisitorTracker";
+import { ManualRefresh } from "@/components/layout/ManualRefresh";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -43,6 +44,7 @@ export default function RootLayout({
               {children}
               <Footer />
               <VisitorTracker />
+              <ManualRefresh />
             </ContentProvider>
           </AuthProvider>
         </ThemeProvider>

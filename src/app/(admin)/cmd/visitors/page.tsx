@@ -12,6 +12,9 @@ import { Button } from "@/components/ui/Button";
 interface VisitorLog {
     id: string;
     ip: string;
+    location?: string;
+    city?: string;
+    country?: string;
     path: string;
     userAgent: string;
     timestamp: Timestamp;
@@ -79,6 +82,7 @@ export default function VisitorsPage() {
                         <thead>
                             <tr className="bg-white/5 border-b border-white/10 text-gray-400 font-mono text-sm">
                                 <th className="p-4">Time</th>
+                                <th className="p-4">Location</th>
                                 <th className="p-4">Path</th>
                                 <th className="p-4">IP Address</th>
                                 <th className="p-4">Device / User Agent</th>
@@ -87,7 +91,7 @@ export default function VisitorsPage() {
                         <tbody className="divide-y divide-white/5">
                             {visitors.length === 0 ? (
                                 <tr>
-                                    <td colSpan={4} className="p-8 text-center text-gray-500">
+                                    <td colSpan={5} className="p-8 text-center text-gray-500">
                                         No visits recorded yet.
                                     </td>
                                 </tr>
@@ -96,6 +100,9 @@ export default function VisitorsPage() {
                                     <tr key={visit.id} className="hover:bg-white/5 transition-colors font-mono text-sm">
                                         <td className="p-4 text-neon-blue whitespace-nowrap">
                                             {visit.timestamp?.toDate().toLocaleString()}
+                                        </td>
+                                        <td className="p-4 text-white font-bold">
+                                            {visit.location || "Unknown"}
                                         </td>
                                         <td className="p-4 text-white">
                                             <span className="bg-neon-purple/20 text-neon-purple px-2 py-1 rounded">

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { useAuth } from "@/lib/AuthContext";
 import { useContent } from "@/lib/ContentContext";
 import { cn } from "@/lib/utils";
@@ -87,52 +88,89 @@ export function InlineText({ id, defaultValue, className, as: Tag = "span" }: In
         );
     }
 
-    // Admin Mode: Floating Editor
+    // Admin Mode: Floating Editor (Portal)
     if (isEditing) {
-        return (
-            <div className="relative inline-block w-full group/editor z-[100]">
-                {/* Editor Toolbar */}
-                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 flex items-center gap-1 bg-neutral-900 border border-white/20 rounded-md p-1 shadow-xl z-[110]">
-                    <div className="flex gap-0.5 border-r border-white/10 pr-1 mr-1">
-                        <button onClick={() => setIsBold(!isBold)} className={cn("p-1.5 rounded hover:bg-white/10 transition-colors", isBold && "text-neon-blue bg-white/10")} title="Bold"><Bold className="w-3.5 h-3.5" /></button>
-                        <button onClick={() => setIsItalic(!isItalic)} className={cn("p-1.5 rounded hover:bg-white/10 transition-colors", isItalic && "text-neon-blue bg-white/10")} title="Italic"><Italic className="w-3.5 h-3.5" /></button>
-                    </div>
-                    <div className="flex gap-0.5 border-r border-white/10 pr-1 mr-1">
-                        <button onClick={() => setAlignment('left')} className={cn("p-1.5 rounded hover:bg-white/10 transition-colors", alignment === 'left' && "text-neon-blue bg-white/10")} title="Align Left"><AlignLeft className="w-3.5 h-3.5" /></button>
-                        <button onClick={() => setAlignment('center')} className={cn("p-1.5 rounded hover:bg-white/10 transition-colors", alignment === 'center' && "text-neon-blue bg-white/10")} title="Align Center"><AlignCenter className="w-3.5 h-3.5" /></button>
-                        <button onClick={() => setAlignment('right')} className={cn("p-1.5 rounded hover:bg-white/10 transition-colors", alignment === 'right' && "text-neon-blue bg-white/10")} title="Align Right"><AlignRight className="w-3.5 h-3.5" /></button>
-                    </div>
-                    <button onClick={handleCancel} className="p-1.5 rounded hover:bg-red-500/20 text-red-400 hover:text-red-500 transition-colors" title="Cancel"><X className="w-3.5 h-3.5" /></button>
-                </div>
+        if (typeof window === 'undefined') return null;
 
-                <textarea
-                    autoFocus
-                    className={cn(
-                        "w-full min-h-[100px] bg-neutral-900 text-white px-3 py-2 rounded-md border border-neon-blue outline-none resize shadow-[0_0_15px_rgba(0,243,255,0.1)]",
-                        className,
-                        isBold && "font-bold",
-                        isItalic && "italic",
-                        alignment === 'center' ? "text-center" : alignment === 'right' ? "text-right" : "text-left"
-                    )}
-                    value={tempValue}
-                    onChange={(e) => setTempValue(e.target.value)}
-                    onKeyDown={(e) => {
-                        if (e.key === 'Enter' && !e.shiftKey) {
-                            e.preventDefault();
-                            handleSave();
-                        }
-                        if (e.key === 'Escape') handleCancel();
-                    }}
+        const EditorModal = (
+            <div className="fixed inset-0 z-[9999] flex items-center justify-center px-4 animate-in fade-in duration-200">
+                {/* Backdrop */}
+                <div
+                    className="absolute inset-0 bg-black/60 backdrop-blur-md"
+                    onClick={handleCancel}
                 />
 
-                {/* Custom Pill Save Button */}
-                <button
-                    onClick={handleSave}
-                    className="absolute top-full left-1/2 -translate-x-1/2 mt-3 flex items-center justify-center gap-2 px-8 py-2.5 bg-black text-white text-base font-bold rounded-full hover:scale-105 transition-transform shadow-2xl z-[110] whitespace-nowrap border border-white/20"
-                >
-                    Save Changes
-                </button>
+                {/* Editor Box */}
+                <div className="relative w-full max-w-lg bg-[#0a0a0a] border border-white/10 rounded-xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200 scale-100">
+
+                    {/* Toolbar */}
+                    <div className="flex items-center justify-between px-4 py-3 border-b border-white/10 bg-white/5">
+                        <div className="flex items-center gap-1">
+                            <span className="text-xs font-mono text-gray-500 mr-2 uppercase tracking-wider">Format</span>
+                            <div className="flex bg-black/50 rounded-lg p-0.5 border border-white/5">
+                                <button onClick={() => setIsBold(!isBold)} className={cn("p-1.5 rounded-md transition-all", isBold ? "bg-neon-blue text-black shadow-lg shadow-neon-blue/20" : "text-gray-400 hover:text-white hover:bg-white/10")} title="Bold"><Bold className="w-4 h-4" /></button>
+                                <button onClick={() => setIsItalic(!isItalic)} className={cn("p-1.5 rounded-md transition-all", isItalic ? "bg-neon-blue text-black shadow-lg shadow-neon-blue/20" : "text-gray-400 hover:text-white hover:bg-white/10")} title="Italic"><Italic className="w-4 h-4" /></button>
+                            </div>
+                            <div className="w-px h-4 bg-white/10 mx-2" />
+                            <div className="flex bg-black/50 rounded-lg p-0.5 border border-white/5">
+                                <button onClick={() => setAlignment('left')} className={cn("p-1.5 rounded-md transition-all", alignment === 'left' ? "bg-neon-blue text-black shadow-lg shadow-neon-blue/20" : "text-gray-400 hover:text-white hover:bg-white/10")} title="Align Left"><AlignLeft className="w-4 h-4" /></button>
+                                <button onClick={() => setAlignment('center')} className={cn("p-1.5 rounded-md transition-all", alignment === 'center' ? "bg-neon-blue text-black shadow-lg shadow-neon-blue/20" : "text-gray-400 hover:text-white hover:bg-white/10")} title="Align Center"><AlignCenter className="w-4 h-4" /></button>
+                                <button onClick={() => setAlignment('right')} className={cn("p-1.5 rounded-md transition-all", alignment === 'right' ? "bg-neon-blue text-black shadow-lg shadow-neon-blue/20" : "text-gray-400 hover:text-white hover:bg-white/10")} title="Align Right"><AlignRight className="w-4 h-4" /></button>
+                            </div>
+                        </div>
+                        <button onClick={handleCancel} className="p-1.5 hover:bg-red-500/10 text-gray-500 hover:text-red-400 rounded-lg transition-colors"><X className="w-5 h-5" /></button>
+                    </div>
+
+                    {/* Text Area */}
+                    <div className="p-4 bg-neutral-900/50">
+                        <textarea
+                            autoFocus
+                            className={cn(
+                                "w-full min-h-[150px] bg-transparent text-white text-lg placeholder:text-gray-700 outline-none resize-none leading-relaxed",
+                                isBold && "font-bold",
+                                isItalic && "italic",
+                                alignment === 'center' ? "text-center" : alignment === 'right' ? "text-right" : "text-left"
+                            )}
+                            value={tempValue}
+                            onChange={(e) => setTempValue(e.target.value)}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter' && !e.shiftKey) {
+                                    e.preventDefault();
+                                    handleSave();
+                                }
+                                if (e.key === 'Escape') handleCancel();
+                            }}
+                            placeholder="Type here..."
+                        />
+                    </div>
+
+                    {/* Footer / Actions */}
+                    <div className="flex items-center justify-end gap-3 px-4 py-3 border-t border-white/10 bg-white/5">
+                        <button
+                            onClick={handleCancel}
+                            className="px-4 py-2 text-sm font-medium text-gray-400 hover:text-white transition-colors"
+                        >
+                            Cancel
+                        </button>
+                        <button
+                            onClick={handleSave}
+                            className="flex items-center gap-2 px-6 py-2 bg-neon-blue text-black text-sm font-bold rounded-lg hover:bg-neon-blue/90 hover:scale-105 transition-all shadow-[0_0_20px_rgba(0,243,255,0.2)]"
+                        >
+                            <Save className="w-4 h-4" />
+                            Save Changes
+                        </button>
+                    </div>
+                </div>
             </div>
+        );
+
+        return (
+            <>
+                <Tag className={cn(className, "opacity-50 blur-[2px]")}>
+                    {value}
+                </Tag>
+                {createPortal(EditorModal, document.body)}
+            </>
         );
     }
 

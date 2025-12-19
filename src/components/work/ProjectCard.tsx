@@ -56,12 +56,18 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 {/* Actions */}
                 <div className="grid grid-cols-2 gap-3 mt-auto pt-2">
                     {project.githubUrl && (
-                        <Button variant="secondary" size="sm" className="w-full text-xs" onClick={() => window.open(project.githubUrl, '_blank')}>
+                        <Button variant="secondary" size="sm" className="w-full text-xs" onClick={() => {
+                            const url = project.githubUrl!.startsWith('http') ? project.githubUrl! : `https://${project.githubUrl}`;
+                            window.open(url, '_blank');
+                        }}>
                             <Github className="w-3 h-3 mr-1" /> Code
                         </Button>
                     )}
                     {project.liveUrl && (
-                        <Button variant="neon" size="sm" className="w-full text-xs !border-neon-purple !text-neon-purple !shadow-[0_0_10px_rgba(188,19,254,0.2)] hover:!bg-neon-purple/10" onClick={() => window.open(project.liveUrl, '_blank')}>
+                        <Button variant="neon" size="sm" className="w-full text-xs !border-neon-purple !text-neon-purple !shadow-[0_0_10px_rgba(188,19,254,0.2)] hover:!bg-neon-purple/10" onClick={() => {
+                            const url = project.liveUrl!.startsWith('http') ? project.liveUrl! : `https://${project.liveUrl}`;
+                            window.open(url, '_blank');
+                        }}>
                             <ExternalLink className="w-3 h-3 mr-1" /> Live Demo
                         </Button>
                     )}

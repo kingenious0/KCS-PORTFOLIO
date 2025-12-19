@@ -34,6 +34,7 @@ export function VisitorTracker() {
             }
         };
 
+        console.log('Tracking visit to:', pathname);
         track();
     }, [pathname]);
 
