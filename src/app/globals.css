@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@variant dark (&:where(.dark, .dark *));
 
 @theme {
   --color-neon-blue: #00f3ff;
@@ -13,26 +14,25 @@
 }
 
 :root {
-  /* Light Mode (Default) */
-  --background: #ffffff;
-  --foreground: #050505;
-  --color-glass-bg: rgba(0, 0, 0, 0.05);
-  --color-glass-border: rgba(0, 0, 0, 0.1);
-  --color-neon-blue: #007075;
-  /* Darker blue for visibility on white */
-  --color-neon-purple: #8a0cb8;
-  --color-neon-green: #06a006;
+  /* Light Mode (Teal/Clean Theme) */
+  --background: #f0fdfa; /* Teal-50/Mint-50 */
+  --foreground: #020617; /* Slate-950 for max contrast */
+  --color-glass-bg: rgba(255, 255, 255, 0.75);
+  --color-glass-border: rgba(20, 184, 166, 0.2); /* Teal hint */
+  --color-neon-blue: #0d9488; /* Teal-600 */
+  --color-neon-purple: #0f766e; /* Teal-700 (Monochromatic accent) */
+  --color-neon-green: #14b8a6; /* Teal-500 */
 }
 
 .dark {
-  /* Dark Mode */
-  --background: #050505;
-  --foreground: #ffffff;
-  --color-glass-bg: rgba(255, 255, 255, 0.05);
-  --color-glass-border: rgba(255, 255, 255, 0.1);
-  --color-neon-blue: #00f3ff;
-  --color-neon-purple: #bc13fe;
-  --color-neon-green: #0aff0a;
+  /* Dark Mode (Deep Teal Theme) */
+  --background: #020617; /* Slate-950 */
+  --foreground: #f0fdfa; /* Teal-50 */
+  --color-glass-bg: rgba(15, 23, 42, 0.6); /* Slate-900 with opacity */
+  --color-glass-border: rgba(45, 212, 191, 0.2); /* Teal-400 hint */
+  --color-neon-blue: #2dd4bf; /* Teal-400 */
+  --color-neon-purple: #14b8a6; /* Teal-500 */
+  --color-neon-green: #5eead4; /* Teal-300 */
 }
 
 body {

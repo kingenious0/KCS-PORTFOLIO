@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { InlineText } from "@/components/admin/InlineText";
+import { EditableImage } from "@/components/admin/EditableImage";
 
 
 export function AboutSection() {
@@ -9,9 +10,7 @@ export function AboutSection() {
         <section className="py-24 px-4 relative overflow-hidden">
             <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
 
-                {/* Image Side Removed */}
-
-                {/* Text Side */}
+                {/* Text Side - Full Width */}
                 <div className="w-full max-w-4xl mx-auto space-y-12 text-center">
                     <motion.div
                         initial={{ opacity: 0, x: 20 }}
@@ -22,7 +21,7 @@ export function AboutSection() {
                             <InlineText
                                 id="aboutTitle"
                                 defaultValue="I Build Digital Legacies."
-                                className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple pb-2"
+                                className="text-slate-900 dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-teal-400 dark:to-teal-200 pb-2"
                             />
                         </h2>
 

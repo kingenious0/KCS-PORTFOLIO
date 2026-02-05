@@ -118,33 +118,33 @@ export function ToolManager({ id, defaultValue, colorClass }: ToolManagerProps) 
                     }
 
                     return (
-                        <div key={i} className="relative flex flex-col items-center justify-center p-3 rounded-xl bg-black/40 border border-white/5 hover:border-white/20 transition-all group">
+                        <div key={i} className="relative flex flex-col items-center justify-center p-3 rounded-xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-white/5 hover:border-teal-500/30 dark:hover:border-white/20 transition-all group shadow-sm dark:shadow-none">
 
                             {/* Admin Controls Overlay */}
                             {user && (
                                 <div className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 flex gap-1 z-20">
-                                    <button onClick={() => handleRemove(i)} className="bg-red-500/20 text-red-400 p-1 rounded hover:bg-red-500 hover:text-white transition-colors">
+                                    <button onClick={() => handleRemove(i)} className="bg-red-500/20 text-red-500 dark:text-red-400 p-1 rounded hover:bg-red-500 hover:text-white transition-colors">
                                         <X className="w-3 h-3" />
                                     </button>
                                 </div>
                             )}
 
                             {/* Icon Container with Upload Overlay */}
-                            <div className="w-8 h-8 relative mb-2 group/icon">
+                            <div className="w-10 h-10 relative mb-3 group/icon flex items-center justify-center p-1 bg-white dark:bg-black/30 rounded-lg shadow-sm dark:shadow-none">
                                 {isUploading === i ? (
-                                    <Loader2 className="w-full h-full animate-spin text-neon-blue" />
+                                    <Loader2 className="w-full h-full animate-spin text-teal-500" />
                                 ) : (
                                     <>
                                         <img
                                             src={iconUrl}
                                             alt={tool.name}
-                                            className="w-full h-full object-contain opacity-70 group-hover:opacity-100 transition-opacity"
+                                            className="w-full h-full object-contain dark:brightness-100 brightness-[0.8] contrast-125 group-hover:scale-110 transition-transform duration-300"
                                             onError={(e) => {
                                                 (e.target as HTMLImageElement).style.display = 'none';
                                                 (e.target as HTMLImageElement).nextElementSibling?.classList.remove('hidden');
                                             }}
                                         />
-                                        <span className="hidden w-full h-full flex items-center justify-center font-bold text-lg text-slate-500">
+                                        <span className="hidden w-full h-full flex items-center justify-center font-bold text-lg text-slate-500 dark:text-slate-400">
                                             {tool.name[0]}
                                         </span>
                                     </>
@@ -161,11 +161,11 @@ export function ToolManager({ id, defaultValue, colorClass }: ToolManagerProps) 
 
                             {/* Name (Click to Edit) */}
                             {user ? (
-                                <span onClick={() => handleNameEdit(i)} className="text-xs font-medium text-slate-400 group-hover:text-white text-center pb-1 cursor-pointer border-b border-transparent hover:border-slate-500">
+                                <span onClick={() => handleNameEdit(i)} className="text-xs font-bold text-slate-700 dark:text-slate-400 group-hover:text-teal-600 dark:group-hover:text-white text-center pb-1 cursor-pointer border-b border-transparent hover:border-slate-500">
                                     {tool.name}
                                 </span>
                             ) : (
-                                <span className="text-xs font-medium text-slate-400 group-hover:text-white text-center pb-1">
+                                <span className="text-xs font-bold text-slate-700 dark:text-slate-400 group-hover:text-teal-600 dark:group-hover:text-white text-center pb-1">
                                     {tool.name}
                                 </span>
                             )}

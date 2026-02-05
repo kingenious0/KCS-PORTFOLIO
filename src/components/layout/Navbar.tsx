@@ -70,29 +70,32 @@ export function Navbar() {
                     <div className="relative w-10 h-10 bg-gradient-to-tr from-neon-blue to-neon-purple rounded-xl overflow-hidden shadow-[0_0_20px_rgba(0,243,255,0.3)] group-hover:shadow-[0_0_30px_rgba(188,19,254,0.5)] transition-shadow">
                         <BrandInitials className="text-xl tracking-tighter" />
                     </div>
-                    <span className="font-bold text-lg text-white hidden md:block tracking-wide group-hover:text-neon-blue transition-colors">
+                    <span className="font-bold text-lg text-slate-900 dark:text-white hidden md:block tracking-wide group-hover:text-neon-blue dark:group-hover:text-neon-blue transition-colors">
                         <InlineText id="brandName" defaultValue="KINGENIOUS WORKS" />
                     </span>
                 </Link>
 
                 {/* Center Nav - Floating Pill */}
-                <div className="glass px-2 py-2 rounded-full flex items-center gap-1">
+                <div className="glass px-2 py-2 rounded-full flex items-center gap-1 dark:text-gray-400">
                     {navItems.map((item) => {
                         const isActive = pathname === item.href;
                         return (
                             <Link
                                 key={item.href}
                                 href={item.href}
-                                className="relative px-5 py-2 text-sm font-medium transition-colors text-gray-400 hover:text-white"
+                                className={cn(
+                                    "relative px-5 py-2 text-sm font-medium transition-colors hover:text-slate-900 dark:hover:text-white",
+                                    isActive ? "text-slate-900 dark:text-neon-blue" : "text-slate-600 dark:text-gray-400"
+                                )}
                             >
                                 {isActive && (
                                     <motion.div
                                         layoutId="nav-pill"
-                                        className="absolute inset-0 bg-white/10 rounded-full"
+                                        className="absolute inset-0 bg-slate-200 dark:bg-white/10 rounded-full"
                                         transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                                     />
                                 )}
-                                <span className={cn("relative z-10", isActive && "text-neon-blue")}>
+                                <span className={cn("relative z-10")}>
                                     {item.name}
                                 </span>
                             </Link>

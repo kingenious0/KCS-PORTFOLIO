@@ -8,7 +8,7 @@ export function Footer() {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="py-12 border-t border-white/5 bg-black/40 mt-auto">
+        <footer className="py-12 pb-32 border-t border-slate-200 dark:border-neutral-800 bg-slate-50 dark:bg-black mt-auto">
             <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
 
                 {/* Brand Area */}

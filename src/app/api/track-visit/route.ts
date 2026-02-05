@@ -5,7 +5,13 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 export async function POST(request: Request) {
     try {
-        const { pathname } = await request.json();
+        let pathname = '/';
+        try {
+            const body = await request.json();
+            pathname = body.pathname || '/';
+        } catch (e) {
+            // Body might be empty
+        }
         const headers = request.headers;
 
         // Get IP address

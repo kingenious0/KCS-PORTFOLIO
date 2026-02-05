@@ -122,6 +122,17 @@ export default function AdminPage() {
                     <h3 className="text-xl font-bold mb-2">Visitor Logs</h3>
                     <p className="text-sm text-gray-400">Track who is viewing your work.</p>
                 </div>
+
+                <div
+                    onClick={() => router.push('/cmd/profile')}
+                    className="p-6 rounded-xl border border-white/10 bg-white/5 hover:border-cyan-400/30 transition-colors cursor-pointer group"
+                >
+                     <div className="w-8 h-8 text-cyan-400 mb-4 group-hover:scale-110 transition-transform">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <h3 className="text-xl font-bold mb-2">Profile Manager</h3>
+                    <p className="text-sm text-gray-400">Update your profile picture.</p>
+                </div>
             </div>
 
 

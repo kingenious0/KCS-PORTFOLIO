@@ -9,8 +9,7 @@ export default function SiteLayout({
 }) {
     return (
         <PlayerProvider>
-            <div className="relative min-h-screen flex flex-col pt-20 pb-24">
-                <Navbar />
+            <div className="relative min-h-screen flex flex-col pb-24">
                 <main className="flex-1 flex flex-col">
                     {children}
                 </main>

@@ -61,7 +61,7 @@ export function EditableImage({ id, defaultSrc, alt, className, width, height, f
     };
 
     return (
-        <div className={cn("relative group/image overflow-hidden", className)}>
+        <div className={cn("relative group/image overflow-hidden", fill ? "w-full h-full" : "", className)}>
             <Image
                 src={currentSrc}
                 alt={alt}

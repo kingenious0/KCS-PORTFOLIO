@@ -63,54 +63,95 @@ function EditableButton({ id, defaultUrl, defaultLabel, icon: Icon, variant = "n
 
 export function ContactSection() {
     return (
-        <section className="py-32 px-4 relative overflow-hidden">
-            {/* Background Gradient Mesh */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-100/50 to-slate-200 dark:via-black/50 dark:to-neutral-900 -z-10" />
+        <section className="py-24 px-4 bg-slate-50 dark:bg-black/50 overflow-hidden relative">
+            <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-24 relative z-10">
+                
+                {/* Left Side: Info */}
+                <div className="lg:w-1/2 space-y-12">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                    >
+                         <h2 className="text-sm font-bold tracking-[0.3em] text-teal-600 dark:text-teal-400 uppercase mb-4">
+                            <InlineText id="contactPre" defaultValue="GET IN TOUCH" />
+                        </h2>
+                        <h3 className="text-5xl md:text-7xl font-black text-slate-900 dark:text-white tracking-tighter leading-tight mb-8">
+                            <InlineText id="contactCTA" defaultValue="Start Your Next Project" />
+                        </h3>
+                        <p className="text-xl text-slate-600 dark:text-slate-400 font-medium max-w-lg">
+                            <InlineText id="contactSub" defaultValue="Have an idea? Let's build something that makes a noise in the industry." />
+                        </p>
+                    </motion.div>
 
-            <div className="max-w-4xl mx-auto text-center">
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                >
-                    <h2 className="text-5xl md:text-7xl font-black mb-8 text-neutral-900 dark:text-white tracking-tighter">
-                        <InlineText id="contactCTA" defaultValue="Let's Build Something Legendary." />
-                    </h2>
+                    {/* Contact Cards */}
+                    <div className="space-y-6">
+                        <div className="flex items-center gap-6 p-6 bg-white dark:bg-slate-900 rounded-[2rem] shadow-sm hover:shadow-lg transition-shadow">
+                            <div className="w-14 h-14 rounded-full bg-teal-50 dark:bg-teal-900/20 flex items-center justify-center text-teal-600 dark:text-teal-400">
+                                <Mail className="w-6 h-6" />
+                            </div>
+                            <div>
+                                <h4 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-1">Email Me</h4>
+                                <a href="mailto:kingenious0@gmail.com" className="text-xl font-bold text-slate-900 dark:text-white hover:text-teal-600 transition-colors">
+                                    <InlineText id="contactEmail" defaultValue="kingenious0@gmail.com" />
+                                </a>
+                            </div>
+                        </div>
 
-                    <p className="text-xl text-slate-600 dark:text-neutral-400 mb-12 max-w-2xl mx-auto font-medium">
-                        <InlineText id="contactSub" defaultValue="Got a vision? I have the sound and the code to bring it to life. Let's talk." />
-                    </p>
-
-                    {/* Action Buttons */}
-                    <div className="flex flex-wrap justify-center gap-6 mb-20">
-                        <EditableButton
-                            id="btnEmail"
-                            defaultUrl="mailto:kingenious0@gmail.com"
-                            defaultLabel="Email Me"
-                            icon={Mail}
-                            variant="neon"
-                        />
-                        <EditableButton
-                            id="btnContact"
-                            defaultUrl="https://wa.me/1234567890"
-                            defaultLabel="Contact Me"
-                            icon={MessageCircle}
-                            variant="ghost"
-                        />
+                        <div className="flex items-center gap-6 p-6 bg-white dark:bg-slate-900 rounded-[2rem] shadow-sm hover:shadow-lg transition-shadow">
+                            <div className="w-14 h-14 rounded-full bg-teal-50 dark:bg-teal-900/20 flex items-center justify-center text-teal-600 dark:text-teal-400">
+                                <MessageCircle className="w-6 h-6" />
+                            </div>
+                            <div>
+                                <h4 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-1">WhatsApp</h4>
+                                <a href="https://wa.me/233000000000" className="text-xl font-bold text-slate-900 dark:text-white hover:text-teal-600 transition-colors">
+                                    <InlineText id="contactPhone" defaultValue="+233 00 000 0000" />
+                                </a>
+                            </div>
+                        </div>
                     </div>
 
-                    {/* Socials Manager */}
-                    <SocialsManager
-                        id="socialLinks"
-                        defaultValue={[
-                            { name: "Instagram", url: "https://instagram.com" },
-                            { name: "Twitter", url: "https://twitter.com" },
-                            { name: "LinkedIn", url: "https://linkedin.com" },
-                            { name: "GitHub", url: "https://github.com" }
-                        ]}
-                    />
+                    {/* Socials */}
+                    <div>
+                         <SocialsManager
+                            id="socialLinks"
+                            defaultValue={[
+                                { name: "Instagram", url: "https://instagram.com" },
+                                { name: "Twitter", url: "https://twitter.com" },
+                                { name: "LinkedIn", url: "https://linkedin.com" },
+                                { name: "GitHub", url: "https://github.com" }
+                            ]}
+                        />
+                    </div>
+                </div>
 
+                {/* Right Side: Big CTA Block (Simulating 'Send Message' form visual weight) */}
+                <motion.div 
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    className="lg:w-1/2"
+                >
+                    <div className="h-full bg-slate-900 dark:bg-teal-950 rounded-[3rem] p-10 md:p-16 flex flex-col justify-between relative overflow-hidden text-white group">
+                        {/* Decorative */}
+                        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-teal-500/20 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2" />
+                        
+                        <div className="relative z-10">
+                            <h3 className="text-3xl md:text-5xl font-black mb-6">Ready to Collaborate?</h3>
+                            <p className="text-lg text-slate-300 dark:text-teal-200/80 leading-relaxed mb-12">
+                                I am currently available for freelance projects and open to full-time opportunities. Secure your slot on my timeline.
+                            </p>
+                        </div>
+
+                        <a 
+                            href="mailto:kingenious0@gmail.com"
+                            className="relative z-10 w-full py-6 bg-white text-slate-900 dark:bg-teal-400 dark:text-teal-950 rounded-2xl font-black text-xl text-center hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl"
+                        >
+                            Send Message
+                        </a>
+                    </div>
                 </motion.div>
+
             </div>
         </section>
     );

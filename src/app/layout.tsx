@@ -4,9 +4,11 @@ import "./globals.css";
 import { AuthProvider } from "@/lib/AuthContext";
 import { ContentProvider } from "@/lib/ContentContext";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
+import { FloatingDock } from "@/components/layout/FloatingDock";
 import { Footer } from "@/components/layout/Footer";
 import { VisitorTracker } from "@/components/layout/VisitorTracker";
 import { ManualRefresh } from "@/components/layout/ManualRefresh";
+import { Toaster } from "react-hot-toast";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -36,15 +38,16 @@ export default function RootLayout({
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
-          forcedTheme="dark"
           disableTransitionOnChange
         >
           <AuthProvider>
             <ContentProvider>
               {children}
+              <FloatingDock />
               <Footer />
               <VisitorTracker />
               <ManualRefresh />
+              <Toaster position="top-center" />
             </ContentProvider>
           </AuthProvider>
         </ThemeProvider>
