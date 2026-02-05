@@ -31,11 +31,11 @@ export default function WorkPage() {
                     <motion.h1
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        className="text-4xl md:text-6xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-neon-purple to-white"
+                        className="text-4xl md:text-6xl font-bold mb-2 text-slate-900 dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-neon-purple dark:to-white"
                     >
                         DEV LAB
                     </motion.h1>
-                    <p className="text-gray-400 font-mono">
+                    <p className="text-slate-600 dark:text-gray-400 font-mono">
                         Running experiments & shipping products.
                     </p>
                 </div>

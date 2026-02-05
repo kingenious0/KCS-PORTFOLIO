@@ -7,7 +7,6 @@ import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { FloatingDock } from "@/components/layout/FloatingDock";
 import { Footer } from "@/components/layout/Footer";
 import { VisitorTracker } from "@/components/layout/VisitorTracker";
-import { ManualRefresh } from "@/components/layout/ManualRefresh";
 import { Toaster } from "react-hot-toast";
 
 const outfit = Outfit({
@@ -46,7 +45,7 @@ export default function RootLayout({
               <FloatingDock />
               <Footer />
               <VisitorTracker />
-              <ManualRefresh />
+              <VisitorTracker />
               <Toaster position="top-center" />
             </ContentProvider>
           </AuthProvider>

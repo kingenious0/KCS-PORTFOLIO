@@ -133,6 +133,17 @@ export default function AdminPage() {
                     <h3 className="text-xl font-bold mb-2">Profile Manager</h3>
                     <p className="text-sm text-gray-400">Update your profile picture.</p>
                 </div>
+
+                <div
+                    onClick={() => router.push('/cmd/inbox')}
+                    className="p-6 rounded-xl border border-white/10 bg-white/5 hover:border-green-400/30 transition-colors cursor-pointer group"
+                >
+                     <div className="w-8 h-8 text-green-400 mb-4 group-hover:scale-110 transition-transform">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    </div>
+                    <h3 className="text-xl font-bold mb-2">Client Inbox</h3>
+                    <p className="text-sm text-gray-400">Read and manage inquiries.</p>
+                </div>
             </div>
 
 

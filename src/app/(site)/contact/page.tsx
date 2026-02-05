@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ChevronLeft, Send, CheckCircle2, User, Mail, Phone, Briefcase, FileText } from "lucide-react";
 import { useState } from "react";
+import { toast } from "react-hot-toast";
 import { db } from "@/lib/firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
@@ -28,11 +29,12 @@ export default function HireMePage() {
                 timestamp: serverTimestamp(),
                 status: "new"
             });
+            toast.success("Message sent successfully!");
             setSuccess(true);
             setFormState({ name: "", email: "", phone: "", service: "", description: "" });
-        } catch (error) {
+        } catch (error: any) {
             console.error("Error submitting form:", error);
-            alert("Something went wrong. Please try again.");
+            toast.error("Error: " + (error.message || "Failed to send"));
         } finally {
             setSubmitting(false);
         }
