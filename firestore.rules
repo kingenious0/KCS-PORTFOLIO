@@ -12,5 +12,11 @@ service cloud.firestore {
       allow create: if true;
       allow read, update, delete: if request.auth != null;
     }
+
+    // Contact Inquiries - Public Write (Create only)
+    match /inquiries/{inquiryId} {
+      allow create: if true;
+      allow read, update, delete: if request.auth != null;
+    }
   }
 }

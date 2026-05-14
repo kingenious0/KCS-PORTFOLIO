@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ChevronLeft, Send, CheckCircle2, User, Mail, Phone, Briefcase, FileText } from "lucide-react";
+import { ChevronLeft, Send, CheckCircle2, User, Mail, Phone, Briefcase, FileText, MessageCircle } from "lucide-react";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { db } from "@/lib/firebase";
@@ -24,17 +24,23 @@ export default function HireMePage() {
         setSubmitting(true);
 
         try {
-            await addDoc(collection(db, "inquiries"), {
-                ...formState,
-                timestamp: serverTimestamp(),
-                status: "new"
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formState)
             });
+
+            if (!response.ok) {
+                const data = await response.json();
+                throw new Error(data.error || "Failed to send message");
+            }
+
             toast.success("Message sent successfully!");
             setSuccess(true);
-            setFormState({ name: "", email: "", phone: "", service: "", description: "" });
+            // We don't reset formState yet because we need it for the WhatsApp link in the success UI
         } catch (error: any) {
             console.error("Error submitting form:", error);
-            toast.error("Error: " + (error.message || "Failed to send"));
+            toast.error(error.message || "Failed to send message");
         } finally {
             setSubmitting(false);
         }
@@ -82,18 +88,34 @@ export default function HireMePage() {
                         className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 md:p-12 shadow-2xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-800"
                     >
                         {success ? (
-                            <div className="text-center py-20 space-y-6">
+                            <div className="text-center py-12 space-y-8">
                                 <div className="w-24 h-24 bg-orange-100 dark:bg-orange-500/10 rounded-full flex items-center justify-center mx-auto text-orange-600 dark:text-orange-400">
                                     <CheckCircle2 className="w-10 h-10" />
                                 </div>
-                                <h3 className="text-3xl font-bold text-slate-900 dark:text-white uppercase tracking-tight">Message Received!</h3>
-                                <p className="text-lg text-slate-600 dark:text-slate-400">I'll analyze your request and get back to you within 24 hours.</p>
-                                <button 
-                                    onClick={() => setSuccess(false)}
-                                    className="mt-8 px-8 py-3 bg-slate-100 dark:bg-slate-800 rounded-full font-bold text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
-                                >
-                                    Send Another
-                                </button>
+                                <div className="space-y-4">
+                                    <h3 className="text-3xl font-bold text-slate-900 dark:text-white uppercase tracking-tight">Message Logged!</h3>
+                                    <p className="text-lg text-slate-600 dark:text-slate-400">I've saved your inquiry. For an <span className="text-orange-500 font-bold">instant response</span>, click the button below to send it to my WhatsApp.</p>
+                                </div>
+                                
+                                <div className="flex flex-col gap-4 max-w-sm mx-auto">
+                                    <a 
+                                        href={`https://wa.me/233597626090?text=${encodeURIComponent(
+                                            `Hi Kingenious! I'm ${formState.name}. I just submitted an inquiry for ${formState.service || 'a project'} on your portfolio.\n\nDescription: ${formState.description}`
+                                        )}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center justify-center gap-3 w-full py-5 bg-[#25D366] text-white rounded-2xl font-black text-xl uppercase tracking-widest hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-green-500/20"
+                                    >
+                                        <MessageCircle className="w-6 h-6" /> Chat on WhatsApp
+                                    </a>
+                                    
+                                    <button 
+                                        onClick={() => setSuccess(false)}
+                                        className="text-sm font-bold text-slate-500 hover:text-orange-500 transition-colors uppercase tracking-widest"
+                                    >
+                                        Send Another Inquiry
+                                    </button>
+                                </div>
                             </div>
                         ) : (
                             <form onSubmit={handleSubmit} className="space-y-8">

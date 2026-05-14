@@ -67,11 +67,11 @@ export function Navbar() {
             <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
                 
                 {/* Logo Area */}
-                <Link href="/" className="group flex items-center gap-3" onClick={handleSecretTap}>
-                    <div className="relative w-10 h-10 bg-gradient-to-tr from-orange-500 to-orange-600 rounded-xl overflow-hidden shadow-lg shadow-orange-500/20 transition-all group-hover:scale-105">
-                        <BrandInitials className="text-xl tracking-tighter" />
+                <Link href="/" className="group flex items-center gap-2 md:gap-3" onClick={handleSecretTap}>
+                    <div className="relative w-9 h-9 md:w-10 md:h-10 bg-gradient-to-tr from-orange-500 to-orange-600 rounded-xl overflow-hidden shadow-lg shadow-orange-500/20 transition-all group-hover:scale-105 shrink-0">
+                        <BrandInitials className="text-lg md:text-xl tracking-tighter" />
                     </div>
-                    <span className="font-black text-xl text-slate-900 dark:text-white tracking-tight group-hover:text-orange-500 transition-colors">
+                    <span className="font-black text-base md:text-xl text-slate-900 dark:text-white tracking-tight group-hover:text-orange-500 transition-colors truncate max-w-[120px] xs:max-w-none">
                         <InlineText id="brandName" defaultValue="KINGENIOUS" />
                     </span>
                 </Link>
@@ -113,17 +113,17 @@ export function Navbar() {
                 </div>
 
                 {/* Mobile/Tablet Controls */}
-                <div className="lg:hidden flex items-center gap-4">
+                <div className="lg:hidden flex items-center gap-2 md:gap-4">
                     {user && (
                         <Link href="/cmd" className="p-2 text-orange-500">
-                            <ShieldCheck className="w-6 h-6" />
+                            <ShieldCheck className="w-5 h-5" />
                         </Link>
                     )}
                     <button 
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        className="p-3 bg-slate-100 dark:bg-white/10 rounded-2xl text-slate-900 dark:text-white transition-all active:scale-95"
+                        className="p-2.5 bg-slate-100 dark:bg-white/10 rounded-xl text-slate-900 dark:text-white transition-all active:scale-95"
                     >
-                        {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                        {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
                     </button>
                 </div>
             </div>

@@ -19,14 +19,16 @@ export function AboutSection() {
                     viewport={{ once: true }}
                     className="w-full md:w-5/12 flex justify-center md:justify-start"
                 >
-                    <div className="relative w-[320px] h-[400px] md:w-[400px] md:h-[500px]">
-                        <div className="absolute inset-0 border-2 border-orange-500/20 rounded-3xl translate-x-4 translate-y-4 -z-10" />
+                    <div className="relative w-[280px] h-[350px] md:w-[400px] md:h-[500px]">
+                        <div className="absolute inset-0 border-2 border-orange-500/20 rounded-3xl translate-x-2 md:translate-x-4 translate-y-2 md:translate-y-4 -z-10" />
                         <div className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-slate-200 dark:border-slate-800 shadow-2xl">
                              <EditableImage 
                                 id="aboutImageMain"
                                 defaultSrc="/KCS LION HEAD.png"
                                 alt="About Profile"
                                 fill
+                                priority={true}
+                                sizes="(max-width: 768px) 280px, 400px"
                                 className="object-cover"
                             />
                         </div>

@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { VisitorTracker } from "@/components/layout/VisitorTracker";
+import { FloatingWhatsApp } from "@/components/layout/FloatingWhatsApp";
 import { Toaster } from "react-hot-toast";
 
 const outfit = Outfit({
@@ -32,19 +33,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${outfit.variable} ${inter.variable}`}>
-      <body className="font-sans antialiased selection:bg-orange-500 selection:text-white">
+    <html lang="en" suppressHydrationWarning className={`${outfit.variable} ${inter.variable} overflow-x-hidden`}>
+      <body className="font-sans antialiased selection:bg-orange-500 selection:text-white overflow-x-hidden bg-black text-white">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
+          enableSystem={false}
           disableTransitionOnChange
         >
           <AuthProvider>
             <ContentProvider>
-              <Navbar />
+              <div className="max-w-full">
+                <Navbar />
+              </div>
               {children}
               <Footer />
               <VisitorTracker />
+              <FloatingWhatsApp />
               <Toaster position="top-center" />
             </ContentProvider>
           </AuthProvider>

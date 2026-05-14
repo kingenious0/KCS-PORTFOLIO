@@ -13,7 +13,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
 
       {/* Hero Section */}
-      <section className="relative min-h-[70vh] flex flex-col items-center justify-center px-6 md:px-20 max-w-5xl mx-auto w-full pt-32 text-center">
+      <section className="relative min-h-[70vh] flex flex-col items-center justify-center px-6 md:px-20 max-w-5xl mx-auto w-full pt-32 text-center overflow-hidden">
         
         {/* Subtle Background Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orange-500/10 rounded-full blur-[120px] -z-10" />

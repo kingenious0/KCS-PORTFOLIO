@@ -16,9 +16,13 @@ interface EditableImageProps {
     height?: number;
     fill?: boolean;
     compact?: boolean;
+    priority?: boolean;
+    sizes?: string;
 }
 
-export function EditableImage({ id, defaultSrc, alt, className, width, height, fill, compact }: EditableImageProps) {
+export function EditableImage({ 
+    id, defaultSrc, alt, className, width, height, fill, compact, priority, sizes 
+}: EditableImageProps) {
     const { user } = useAuth();
     const { content, updateContent } = useContent();
     const [isUploading, setIsUploading] = useState(false);
@@ -71,13 +75,14 @@ export function EditableImage({ id, defaultSrc, alt, className, width, height, f
                 width={width}
                 height={height}
                 fill={fill}
-                loading="lazy"
+                priority={priority}
+                sizes={sizes || (fill ? "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" : undefined)}
                 className={cn("transition-transform duration-700", fill ? "object-cover" : "", isUploading && "opacity-50 grayscale")}
             />
 
             {isUploading && (
                 <div className="absolute inset-0 flex items-center justify-center bg-black/50 z-20">
-                    <Loader2 className={cn("animate-spin text-neon-blue", compact ? "w-4 h-4" : "w-8 h-8")} />
+                    <Loader2 className={cn("animate-spin text-orange-500", compact ? "w-4 h-4" : "w-8 h-8")} />
                 </div>
             )}
 
