@@ -7,7 +7,6 @@ import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { VisitorTracker } from "@/components/layout/VisitorTracker";
-import { FloatingWhatsApp } from "@/components/layout/FloatingWhatsApp";
 import { Toaster } from "react-hot-toast";
 
 const outfit = Outfit({
@@ -49,7 +48,6 @@ export default function RootLayout({
               {children}
               <Footer />
               <VisitorTracker />
-              <FloatingWhatsApp />
               <Toaster position="top-center" />
             </ContentProvider>
           </AuthProvider>
