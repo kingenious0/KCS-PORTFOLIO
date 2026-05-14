@@ -22,8 +22,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "KINGENIOUS WORKS | Beatmaker & Developer",
-  description: "A high-performance portfolio for a Beatmaker & Web Developer.",
+  title: "KINGENIOUS | Full-stack Architect & Producer",
+  description: "Engineering secure, high-performance systems at the speed of AI. A premium portfolio by Elliot Enstiwah.",
 };
 
 export default function RootLayout({
