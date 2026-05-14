@@ -4,7 +4,7 @@ import "./globals.css";
 import { AuthProvider } from "@/lib/AuthContext";
 import { ContentProvider } from "@/lib/ContentContext";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
-import { FloatingDock } from "@/components/layout/FloatingDock";
+import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { VisitorTracker } from "@/components/layout/VisitorTracker";
 import { Toaster } from "react-hot-toast";
@@ -33,7 +33,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className={`${outfit.variable} ${inter.variable}`}>
-      <body className="font-sans antialiased selection:bg-neon-blue selection:text-black">
+      <body className="font-sans antialiased selection:bg-orange-500 selection:text-white">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -41,10 +41,9 @@ export default function RootLayout({
         >
           <AuthProvider>
             <ContentProvider>
+              <Navbar />
               {children}
-              <FloatingDock />
               <Footer />
-              <VisitorTracker />
               <VisitorTracker />
               <Toaster position="top-center" />
             </ContentProvider>

@@ -11,9 +11,8 @@ export function Footer() {
         <footer className="py-12 pb-32 border-t border-slate-200 dark:border-neutral-800 bg-slate-50 dark:bg-black mt-auto">
             <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
 
-                {/* Brand Area */}
                 <div className="flex items-center gap-2">
-                    <div className="relative w-8 h-8 bg-gradient-to-tr from-neon-blue to-neon-purple rounded-lg overflow-hidden opacity-80 flex items-center justify-center">
+                    <div className="relative w-8 h-8 bg-gradient-to-tr from-orange-500 to-orange-600 rounded-lg overflow-hidden opacity-80 flex items-center justify-center">
                         <BrandInitials className="text-sm" />
                     </div>
                     <span className="font-bold text-md text-white/50 tracking-wide">

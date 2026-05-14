@@ -2,7 +2,7 @@
 
 import { useAuth } from "@/lib/AuthContext";
 import { useContent } from "@/lib/ContentContext";
-import { X, Plus, ExternalLink } from "lucide-react";
+import { X, Plus, ExternalLink, Instagram, Github, Linkedin, Twitter, Youtube, Globe, Mail } from "lucide-react";
 import Link from "next/link";
 
 interface SocialItem {
@@ -14,6 +14,34 @@ interface SocialsManagerProps {
     id: string;
     defaultValue: SocialItem[];
 }
+
+// Map common names to Lucide icons
+const iconMap: Record<string, any> = {
+    instagram: Instagram,
+    github: Github,
+    linkedin: Linkedin,
+    twitter: Twitter,
+    x: Twitter,
+    youtube: Youtube,
+    gmail: Mail,
+    email: Mail,
+    website: Globe,
+    portfolio: Globe
+};
+
+// Map common names to SimpleIcons slugs
+const slugMap: Record<string, string> = {
+    linkedin: "linkedin",
+    github: "github",
+    instagram: "instagram",
+    x: "x",
+    twitter: "x",
+    youtube: "youtube",
+    facebook: "facebook",
+    twitch: "twitch",
+    discord: "discord",
+    spotify: "spotify"
+};
 
 export function SocialsManager({ id, defaultValue }: SocialsManagerProps) {
     const { user } = useAuth();
@@ -33,7 +61,7 @@ export function SocialsManager({ id, defaultValue }: SocialsManagerProps) {
     };
 
     const handleAdd = () => {
-        const name = prompt("Social Network Name (e.g. Instagram):");
+        const name = prompt("Social Network Name (e.g. LinkedIn, GitHub, X):");
         if (!name) return;
         const url = prompt("Profile URL:");
         if (!url) return;
@@ -63,7 +91,9 @@ export function SocialsManager({ id, defaultValue }: SocialsManagerProps) {
     return (
         <div className="flex flex-wrap justify-center gap-8 md:gap-12">
             {socials.map((social, i) => {
-                const slug = social.name.toLowerCase().replace(/\s/g, "");
+                const normalizedName = social.name.toLowerCase().trim();
+                const LucideIcon = iconMap[normalizedName] || Globe;
+                const slug = slugMap[normalizedName] || normalizedName.replace(/\s/g, "");
                 const iconUrl = `https://cdn.simpleicons.org/${slug}/fff`; // White icons
 
                 return (
@@ -71,7 +101,7 @@ export function SocialsManager({ id, defaultValue }: SocialsManagerProps) {
                         {/* Admin Controls */}
                         {user && (
                             <div className="absolute -top-4 -right-4 flex gap-1 z-20 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <button onClick={() => handleEdit(i)} className="bg-blue-500/20 text-blue-400 p-1 rounded hover:bg-blue-500 hover:text-white" title="Edit Link">
+                                <button onClick={() => handleEdit(i)} className="bg-orange-500/20 text-orange-400 p-1 rounded hover:bg-orange-500 hover:text-white" title="Edit Link">
                                     <ExternalLink className="w-3 h-3" />
                                 </button>
                                 <button onClick={() => handleRemove(i)} className="bg-red-500/20 text-red-400 p-1 rounded hover:bg-red-500 hover:text-white" title="Remove">
@@ -83,21 +113,26 @@ export function SocialsManager({ id, defaultValue }: SocialsManagerProps) {
                         <Link
                             href={social.url}
                             target="_blank"
-                            className="block hover:scale-110 transition-transform opacity-70 hover:opacity-100"
+                            className="flex flex-col items-center gap-2 hover:scale-110 transition-transform group/link"
                         >
-                            <img
-                                src={iconUrl}
-                                alt={social.name}
-                                className="w-8 h-8 md:w-10 md:h-10"
-                                onError={(e) => {
-                                    // Fallback to text if icon fails
-                                    (e.target as HTMLImageElement).style.display = 'none';
-                                    (e.target as HTMLImageElement).nextElementSibling?.classList.remove('hidden');
-                                }}
-                            />
-                            <div className="hidden w-10 h-10 bg-white/10 rounded-full flex items-center justify-center font-bold text-white text-xs border border-white/20">
-                                {social.name[0]}
+                            <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center transition-all group-hover/link:border-orange-500/50 group-hover/link:bg-orange-500/5">
+                                <img
+                                    src={iconUrl}
+                                    alt={social.name}
+                                    className="w-5 h-5 md:w-6 md:h-6 object-contain"
+                                    onError={(e) => {
+                                        // Fallback to Lucide Icon if SimpleIcons fails
+                                        (e.target as HTMLImageElement).style.display = 'none';
+                                        (e.target as HTMLImageElement).nextElementSibling?.classList.remove('hidden');
+                                    }}
+                                />
+                                <div className="hidden">
+                                    <LucideIcon className="w-5 h-5 md:w-6 md:h-6 text-slate-400 group-hover/link:text-orange-500 transition-colors" />
+                                </div>
                             </div>
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 group-hover/link:text-white transition-colors">
+                                {social.name}
+                            </span>
                         </Link>
                     </div>
                 );
@@ -105,8 +140,11 @@ export function SocialsManager({ id, defaultValue }: SocialsManagerProps) {
 
             {/* Add Button */}
             {user && (
-                <button onClick={handleAdd} className="flex items-center justify-center w-10 h-10 rounded-full border border-dashed border-white/20 hover:bg-white/10 hover:border-white transition-colors text-white/50 hover:text-white">
-                    <Plus className="w-5 h-5" />
+                <button onClick={handleAdd} className="flex flex-col items-center gap-2 group/add">
+                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-dashed border-slate-300 dark:border-white/20 flex items-center justify-center hover:bg-orange-500/5 hover:border-orange-500/50 transition-all text-slate-300 dark:text-white/20 hover:text-orange-500">
+                        <Plus className="w-6 h-6" />
+                    </div>
+                    <span className="text-[10px] font-bold uppercase tracking-widest opacity-0 group-hover/add:opacity-100 transition-opacity">Add</span>
                 </button>
             )}
         </div>

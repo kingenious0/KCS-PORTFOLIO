@@ -22,17 +22,25 @@ export async function POST(request: Request) {
 
         const result = await new Promise((resolve, reject) => {
             const uploadStream = cloudinary.uploader.upload_stream(
-                { folder: folder, resource_type: "auto" },
+                { 
+                    folder: folder, 
+                    resource_type: "auto",
+                    quality: "auto",
+                    fetch_format: "auto"
+                },
                 (error, result) => {
-                    if (error) reject(error);
+                    if (error) {
+                        console.error("Cloudinary Stream Error:", error);
+                        reject(error);
+                    }
                     else resolve(result);
                 }
             );
             uploadStream.end(buffer);
         });
 
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        return NextResponse.json({ url: (result as any).secure_url });
+        const uploadResult = result as any;
+        return NextResponse.json({ url: uploadResult.secure_url });
     } catch (error) {
         console.error("Upload error:", error);
         const errorMessage = error instanceof Error ? error.message : String(error);

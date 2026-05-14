@@ -50,7 +50,7 @@ export default function HireMePage() {
             <header className="pt-8 px-6 md:px-12 flex justify-between items-center relative z-10">
                 <Link 
                     href="/" 
-                    className="flex items-center gap-2 text-sm font-bold text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors uppercase tracking-widest"
+                    className="flex items-center gap-2 text-sm font-bold text-slate-500 dark:text-slate-400 hover:text-orange-500 transition-colors uppercase tracking-widest"
                 >
                     <ChevronLeft className="w-4 h-4" /> Back to Home
                 </Link>
@@ -65,12 +65,12 @@ export default function HireMePage() {
                         animate={{ opacity: 1, y: 0 }}
                         className="text-center mb-12"
                     >
-                        <h2 className="text-sm font-bold tracking-[0.3em] text-teal-600 dark:text-teal-400 uppercase mb-4">
+                        <h2 className="text-sm font-bold tracking-[0.3em] text-orange-500 uppercase mb-4">
                             Work With Me
                         </h2>
                         <h1 className="text-5xl md:text-7xl font-black text-slate-900 dark:text-white tracking-tighter leading-[1.1]">
                             Tell me about your <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-600 italic">next big idea.</span>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600 italic">next big idea.</span>
                         </h1>
                     </motion.div>
 
@@ -83,7 +83,7 @@ export default function HireMePage() {
                     >
                         {success ? (
                             <div className="text-center py-20 space-y-6">
-                                <div className="w-24 h-24 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto text-green-600 dark:text-green-400">
+                                <div className="w-24 h-24 bg-orange-100 dark:bg-orange-500/10 rounded-full flex items-center justify-center mx-auto text-orange-600 dark:text-orange-400">
                                     <CheckCircle2 className="w-10 h-10" />
                                 </div>
                                 <h3 className="text-3xl font-bold text-slate-900 dark:text-white uppercase tracking-tight">Message Received!</h3>
@@ -99,7 +99,7 @@ export default function HireMePage() {
                             <form onSubmit={handleSubmit} className="space-y-8">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                     {/* Name */}
-                                    <div className="space-y-3 p-4 bg-slate-50 dark:bg-slate-950/50 rounded-2xl border border-transparent focus-within:border-teal-500 transition-colors">
+                                    <div className="space-y-3 p-4 bg-slate-50 dark:bg-slate-950/50 rounded-2xl border border-transparent focus-within:border-orange-500 transition-colors">
                                         <label className="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-wider">
                                             <User className="w-4 h-4" /> Your Name
                                         </label>
@@ -114,7 +114,7 @@ export default function HireMePage() {
                                     </div>
 
                                     {/* Email */}
-                                    <div className="space-y-3 p-4 bg-slate-50 dark:bg-slate-950/50 rounded-2xl border border-transparent focus-within:border-teal-500 transition-colors">
+                                    <div className="space-y-3 p-4 bg-slate-50 dark:bg-slate-950/50 rounded-2xl border border-transparent focus-within:border-orange-500 transition-colors">
                                         <label className="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-wider">
                                             <Mail className="w-4 h-4" /> Email Address
                                         </label>
@@ -131,7 +131,7 @@ export default function HireMePage() {
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                     {/* Phone */}
-                                    <div className="space-y-3 p-4 bg-slate-50 dark:bg-slate-950/50 rounded-2xl border border-transparent focus-within:border-teal-500 transition-colors">
+                                    <div className="space-y-3 p-4 bg-slate-50 dark:bg-slate-950/50 rounded-2xl border border-transparent focus-within:border-orange-500 transition-colors">
                                         <label className="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-wider">
                                             <Phone className="w-4 h-4" /> Phone Number
                                         </label>
@@ -145,7 +145,7 @@ export default function HireMePage() {
                                     </div>
 
                                     {/* Service */}
-                                    <div className="space-y-3 p-4 bg-slate-50 dark:bg-slate-950/50 rounded-2xl border border-transparent focus-within:border-teal-500 transition-colors">
+                                    <div className="space-y-3 p-4 bg-slate-50 dark:bg-slate-950/50 rounded-2xl border border-transparent focus-within:border-orange-500 transition-colors">
                                         <label className="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-wider">
                                             <Briefcase className="w-4 h-4" /> Interested In
                                         </label>
@@ -165,7 +165,7 @@ export default function HireMePage() {
                                 </div>
 
                                 {/* Description */}
-                                <div className="space-y-3 p-4 bg-slate-50 dark:bg-slate-950/50 rounded-2xl border border-transparent focus-within:border-teal-500 transition-colors">
+                                <div className="space-y-3 p-4 bg-slate-50 dark:bg-slate-950/50 rounded-2xl border border-transparent focus-within:border-orange-500 transition-colors">
                                     <label className="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-wider">
                                         <FileText className="w-4 h-4" /> Project Description
                                     </label>
@@ -183,7 +183,7 @@ export default function HireMePage() {
                                 <button 
                                     type="submit"
                                     disabled={submitting}
-                                    className="w-full py-5 rounded-2xl bg-teal-600 text-white font-black text-xl uppercase tracking-widest hover:bg-teal-700 hover:shadow-xl hover:shadow-teal-500/20 active:scale-[0.98] transition-all disabled:opacity-70 flex items-center justify-center gap-3"
+                                    className="w-full py-5 rounded-2xl bg-orange-500 text-white font-black text-xl uppercase tracking-widest hover:bg-orange-600 hover:shadow-xl hover:shadow-orange-500/20 active:scale-[0.98] transition-all disabled:opacity-70 flex items-center justify-center gap-3"
                                 >
                                     {submitting ? (
                                         "Sending..."

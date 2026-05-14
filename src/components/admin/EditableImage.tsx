@@ -41,14 +41,17 @@ export function EditableImage({ id, defaultSrc, alt, className, width, height, f
                 body: formData,
             });
 
-            if (!uploadRes.ok) throw new Error("Upload failed");
+            if (!uploadRes.ok) {
+                const errorData = await uploadRes.json();
+                throw new Error(errorData.error || "Upload failed");
+            }
 
             const data = await uploadRes.json();
             await updateContent(id, data.url);
 
-        } catch (error) {
+        } catch (error: any) {
             console.error("Image upload failed:", error);
-            alert("Failed to upload image. Please try again.");
+            alert(`Error: ${error.message || "Failed to upload image"}`);
         } finally {
             setIsUploading(false);
         }

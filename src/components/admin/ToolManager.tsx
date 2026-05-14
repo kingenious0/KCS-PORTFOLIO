@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 import { useAuth } from "@/lib/AuthContext";
 import { useContent } from "@/lib/ContentContext";
-import { Upload, X, Plus, Loader2, Edit2 } from "lucide-react";
+import { Upload, X, Plus, Loader2, Edit2, Music } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
@@ -107,18 +107,22 @@ export function ToolManager({ id, defaultValue, colorClass }: ToolManagerProps) 
             <div className="grid grid-cols-3 sm:grid-cols-4 gap-4">
                 {tools.map((tool, i) => {
                     // Logic for Icon URL
-                    // If custom URL exists, use it. Else use SimpleIcons logic
+                    const productionKeywords = ['flstudio', 'logicpro', 'sounddesign', 'serato', 'garageband', 'beats'];
+                    const slug = tool.name.toLowerCase()
+                        .replace(/\+/g, "plus")
+                        .replace(/\./g, "dot")
+                        .replace(/\s/g, "");
+                    
+                    const isProductionTool = productionKeywords.includes(slug);
+                    
                     let iconUrl = tool.iconUrl;
-                    if (!iconUrl) {
-                        const slug = tool.name.toLowerCase()
-                            .replace(/\+/g, "plus")
-                            .replace(/\./g, "dot")
-                            .replace(/\s/g, "");
+                    // If no custom URL and NOT a known missing production tool, use SimpleIcons
+                    if (!iconUrl && !isProductionTool) {
                         iconUrl = `https://cdn.simpleicons.org/${slug}/${colorClass.replace('#', '')}`;
                     }
 
                     return (
-                        <div key={i} className="relative flex flex-col items-center justify-center p-3 rounded-xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-white/5 hover:border-teal-500/30 dark:hover:border-white/20 transition-all group shadow-sm dark:shadow-none">
+                        <div key={i} className="relative flex flex-col items-center justify-center p-3 rounded-xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-white/5 hover:border-orange-500/30 dark:hover:border-white/20 transition-all group shadow-sm dark:shadow-none">
 
                             {/* Admin Controls Overlay */}
                             {user && (
@@ -132,18 +136,22 @@ export function ToolManager({ id, defaultValue, colorClass }: ToolManagerProps) 
                             {/* Icon Container with Upload Overlay */}
                             <div className="w-10 h-10 relative mb-3 group/icon flex items-center justify-center p-1 bg-white dark:bg-black/30 rounded-lg shadow-sm dark:shadow-none">
                                 {isUploading === i ? (
-                                    <Loader2 className="w-full h-full animate-spin text-teal-500" />
+                                    <Loader2 className="w-full h-full animate-spin text-orange-500" />
                                 ) : (
                                     <>
-                                        <img
-                                            src={iconUrl}
-                                            alt={tool.name}
-                                            className="w-full h-full object-contain dark:brightness-100 brightness-[0.8] contrast-125 group-hover:scale-110 transition-transform duration-300"
-                                            onError={(e) => {
-                                                (e.target as HTMLImageElement).style.display = 'none';
-                                                (e.target as HTMLImageElement).nextElementSibling?.classList.remove('hidden');
-                                            }}
-                                        />
+                                        {iconUrl ? (
+                                            <img
+                                                src={iconUrl}
+                                                alt={tool.name}
+                                                className="w-full h-full object-contain dark:brightness-100 brightness-[0.8] contrast-125 group-hover:scale-110 transition-transform duration-300"
+                                                onError={(e) => {
+                                                    (e.target as HTMLImageElement).style.display = 'none';
+                                                    (e.target as HTMLImageElement).nextElementSibling?.classList.remove('hidden');
+                                                }}
+                                            />
+                                        ) : (
+                                            <Music className="w-6 h-6 text-orange-500 group-hover:scale-110 transition-transform" />
+                                        )}
                                         <span className="hidden w-full h-full flex items-center justify-center font-bold text-lg text-slate-500 dark:text-slate-400">
                                             {tool.name[0]}
                                         </span>
@@ -161,11 +169,11 @@ export function ToolManager({ id, defaultValue, colorClass }: ToolManagerProps) 
 
                             {/* Name (Click to Edit) */}
                             {user ? (
-                                <span onClick={() => handleNameEdit(i)} className="text-xs font-bold text-slate-700 dark:text-slate-400 group-hover:text-teal-600 dark:group-hover:text-white text-center pb-1 cursor-pointer border-b border-transparent hover:border-slate-500">
+                                <span onClick={() => handleNameEdit(i)} className="text-xs font-bold text-slate-700 dark:text-slate-400 group-hover:text-orange-600 dark:group-hover:text-white text-center pb-1 cursor-pointer border-b border-transparent hover:border-slate-500">
                                     {tool.name}
                                 </span>
                             ) : (
-                                <span className="text-xs font-bold text-slate-700 dark:text-slate-400 group-hover:text-teal-600 dark:group-hover:text-white text-center pb-1">
+                                <span className="text-xs font-bold text-slate-700 dark:text-slate-400 group-hover:text-orange-600 dark:group-hover:text-white text-center pb-1">
                                     {tool.name}
                                 </span>
                             )}

@@ -3,55 +3,82 @@
 import { motion } from "framer-motion";
 import { InlineText } from "@/components/admin/InlineText";
 import { EditableImage } from "@/components/admin/EditableImage";
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 
 export function AboutSection() {
     return (
-        <section className="py-24 px-4 relative overflow-hidden">
-            <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+        <section className="py-32 px-6 relative overflow-hidden">
+            <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16 md:gap-24">
 
-                {/* Text Side - Full Width */}
-                <div className="w-full max-w-4xl mx-auto space-y-12 text-center">
+                {/* Left Side: Image */}
+                <motion.div 
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    className="w-full md:w-5/12 flex justify-center md:justify-start"
+                >
+                    <div className="relative w-[320px] h-[400px] md:w-[400px] md:h-[500px]">
+                        <div className="absolute inset-0 border-2 border-orange-500/20 rounded-3xl translate-x-4 translate-y-4 -z-10" />
+                        <div className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-slate-200 dark:border-slate-800 shadow-2xl">
+                             <EditableImage 
+                                id="aboutImageMain"
+                                defaultSrc="/KCS LION HEAD.png"
+                                alt="About Profile"
+                                fill
+                                className="object-cover"
+                            />
+                        </div>
+                    </div>
+                </motion.div>
+
+                {/* Right Side: Content */}
+                <div className="w-full md:w-7/12 space-y-10">
                     <motion.div
-                        initial={{ opacity: 0, x: 20 }}
+                        initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                     >
-                        <h2 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 relative">
+                        <h3 className="text-sm font-black tracking-[0.3em] text-orange-500 uppercase mb-4">
+                            <InlineText id="aboutBadge" defaultValue="ABOUT ME" />
+                        </h3>
+                        <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight mb-8">
                             <InlineText
                                 id="aboutTitle"
-                                defaultValue="I Build Digital Legacies."
-                                className="text-slate-900 dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-teal-400 dark:to-teal-200 pb-2"
+                                defaultValue="I Build Digital Solutions."
                             />
                         </h2>
 
-                        <div className="text-lg md:text-xl text-slate-700 dark:text-neutral-400 font-medium leading-relaxed mb-8">
-                            <InlineText
-                                id="aboutBio"
-                                defaultValue="I'm a hybrid creative operating at the intersection of sound and code. Blending rhythmic precision with algorithmic complexity to craft experiences that resonate."
-                            />
+                        <div className="space-y-6 text-lg text-slate-700 dark:text-slate-400 font-medium leading-relaxed">
+                            <p>
+                                <InlineText
+                                    id="aboutBio1"
+                                    defaultValue="Hi, I'm Kingenious. I'm a Fullstack Developer who thrives on the frontend. While I handle the entire stack, my passion lies in crafting pixel-perfect, interactive user experiences that leave a lasting impression."
+                                />
+                            </p>
+                            <p>
+                                <InlineText
+                                    id="aboutBio2"
+                                    defaultValue="I am a pioneer in AI-accelerated development. By leveraging cutting-edge tools like Cursor and Antigravity, I've successfully built and scaled over 5 fullstack applications with unmatched efficiency. I don't just use these tools; I master them to ship higher-quality products in record time."
+                                />
+                            </p>
+                            <p>
+                                <InlineText
+                                    id="aboutBio3"
+                                    defaultValue="My approach is built for the modern era: combining deep engineering knowledge with agentic workflows. Whether you need a high-performance web app or a unique sonic identity, I bring a level of speed and scalability that traditional workflows simply can't match."
+                                />
+                            </p>
                         </div>
 
-                        {/* Stats Grid */}
-                        <div className="grid grid-cols-2 gap-8 border-t border-neutral-200 dark:border-white/10 pt-8">
-                            <div>
-                                <h3 className="text-3xl font-black text-neutral-900 dark:text-white mb-2">
-                                    <InlineText id="stat1Value" defaultValue="3+" />
-                                </h3>
-                                <div className="text-sm uppercase tracking-widest text-slate-500 dark:text-neutral-500 font-bold">
-                                    <InlineText id="stat1Label" defaultValue="Years Exp." />
-                                </div>
-                            </div>
-                            <div>
-                                <h3 className="text-3xl font-black text-neutral-900 dark:text-white mb-2">
-                                    <InlineText id="stat2Value" defaultValue="50+" />
-                                </h3>
-                                <div className="text-sm uppercase tracking-widest text-slate-500 dark:text-neutral-500 font-bold">
-                                    <InlineText id="stat2Label" defaultValue="Projects" />
-                                </div>
-                            </div>
+                        <div className="pt-8 flex flex-wrap gap-4">
+                            <Link href="/about" className="px-10 py-4 bg-orange-500 text-white rounded-full font-bold hover:bg-orange-600 transition-all shadow-lg shadow-orange-500/20 inline-flex items-center gap-2 group">
+                                Learn More About Me <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                            <Link href="/contact" className="px-10 py-4 border-2 border-orange-500/50 text-orange-500 rounded-full font-bold hover:bg-orange-500 hover:text-white transition-all inline-flex items-center gap-2">
+                                Hire Me
+                            </Link>
                         </div>
-
                     </motion.div>
                 </div>
             </div>

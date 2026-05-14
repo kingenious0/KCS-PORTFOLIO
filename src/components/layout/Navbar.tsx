@@ -2,81 +2,82 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/lib/AuthContext";
-import { ShieldCheck, LogOut, User } from "lucide-react";
+import { ShieldCheck, LogOut, Menu, X } from "lucide-react";
 import { InlineText } from "@/components/admin/InlineText";
 import { BrandTitleUpdater } from "@/components/layout/BrandTitleUpdater";
 import { BrandInitials } from "@/components/layout/BrandInitials";
 
 const navItems = [
     { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
     { name: "Beats", href: "/beats" },
     { name: "Work", href: "/work" },
+    { name: "Contact", href: "/contact" },
 ];
 
 export function Navbar() {
     const pathname = usePathname();
     const router = useRouter();
-    const { user, login, logout } = useAuth();
+    const { user, logout } = useAuth();
+    
+    const [isScrolled, setIsScrolled] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    // Secret Access Logic
-    useEffect(() => {
-        const handleKeyDown = (e: KeyboardEvent) => {
-            if (e.ctrlKey && e.shiftKey && e.key === 'L') {
-                e.preventDefault();
-                router.push('/cmd');
-            }
-        };
-        window.addEventListener('keydown', handleKeyDown);
-        return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [router]);
-
-    // Triple Tap Logic
+    // Triple Tap Logic for Admin Panel
     const tapRef = useRef(0);
     const tapTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 20);
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    // Close menu on route change
+    useEffect(() => {
+        setIsMenuOpen(false);
+    }, [pathname]);
+
     const handleSecretTap = (e: React.MouseEvent) => {
-        // Clear existing reset timer
-        if (tapTimeoutRef.current) {
-            clearTimeout(tapTimeoutRef.current);
-        }
-
+        if (tapTimeoutRef.current) clearTimeout(tapTimeoutRef.current);
         tapRef.current += 1;
-
-        if (tapRef.current === 3) {
-            e.preventDefault();
-            e.stopPropagation();
-            router.push('/cmd');
-            tapRef.current = 0; // Reset
+        if (tapRef.current >= 3) {
+            router.push("/cmd");
+            tapRef.current = 0;
             return;
         }
-
-        // Set timer to reset count if no more taps happen quickly
         tapTimeoutRef.current = setTimeout(() => {
             tapRef.current = 0;
         }, 800);
     };
 
     return (
-        <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4 pointer-events-none">
+        <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
+            isScrolled 
+                ? "bg-white/80 dark:bg-black/80 backdrop-blur-xl border-b border-slate-200/50 dark:border-white/10 py-3" 
+                : "bg-transparent py-6"
+        }`}>
             <BrandTitleUpdater />
-            <div className="max-w-7xl mx-auto flex items-center justify-between pointer-events-auto">
-
+            <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+                
                 {/* Logo Area */}
-                <Link href="/" className="group flex items-center gap-2" onClick={handleSecretTap}>
-                    <div className="relative w-10 h-10 bg-gradient-to-tr from-neon-blue to-neon-purple rounded-xl overflow-hidden shadow-[0_0_20px_rgba(0,243,255,0.3)] group-hover:shadow-[0_0_30px_rgba(188,19,254,0.5)] transition-shadow">
+                <Link href="/" className="group flex items-center gap-3" onClick={handleSecretTap}>
+                    <div className="relative w-10 h-10 bg-gradient-to-tr from-orange-500 to-orange-600 rounded-xl overflow-hidden shadow-lg shadow-orange-500/20 transition-all group-hover:scale-105">
                         <BrandInitials className="text-xl tracking-tighter" />
                     </div>
-                    <span className="font-bold text-lg text-slate-900 dark:text-white hidden md:block tracking-wide group-hover:text-neon-blue dark:group-hover:text-neon-blue transition-colors">
-                        <InlineText id="brandName" defaultValue="KINGENIOUS WORKS" />
+                    <span className="font-black text-xl text-slate-900 dark:text-white tracking-tight group-hover:text-orange-500 transition-colors">
+                        <InlineText id="brandName" defaultValue="KINGENIOUS" />
                     </span>
                 </Link>
 
-                {/* Center Nav - Floating Pill */}
-                <div className="glass px-2 py-2 rounded-full flex items-center gap-1 dark:text-gray-400">
+                {/* Desktop Navigation */}
+                <div className="hidden lg:flex items-center gap-8">
                     {navItems.map((item) => {
                         const isActive = pathname === item.href;
                         return (
@@ -84,40 +85,86 @@ export function Navbar() {
                                 key={item.href}
                                 href={item.href}
                                 className={cn(
-                                    "relative px-5 py-2 text-sm font-medium transition-colors hover:text-slate-900 dark:hover:text-white",
-                                    isActive ? "text-slate-900 dark:text-neon-blue" : "text-slate-600 dark:text-gray-400"
+                                    "relative text-sm font-bold uppercase tracking-widest transition-all hover:text-orange-500",
+                                    isActive ? "text-orange-500" : "text-slate-500 dark:text-slate-400"
                                 )}
                             >
+                                {item.name}
                                 {isActive && (
                                     <motion.div
-                                        layoutId="nav-pill"
-                                        className="absolute inset-0 bg-slate-200 dark:bg-white/10 rounded-full"
-                                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                                        layoutId="nav-underline"
+                                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-orange-500 rounded-full"
                                     />
                                 )}
-                                <span className={cn("relative z-10")}>
-                                    {item.name}
-                                </span>
                             </Link>
                         );
                     })}
-                </div>
 
-                {/* Right Actions - STEALTH MODE */}
-                <div className="flex items-center gap-4">
                     {user && (
-                        <div className="flex items-center gap-3">
-                            <Link href="/cmd" className="hidden md:flex items-center gap-2 text-sm font-medium text-neon-green hover:underline">
-                                <ShieldCheck className="w-4 h-4" /> Admin
+                        <div className="flex items-center gap-4 pl-8 border-l border-slate-200 dark:border-white/10">
+                            <Link href="/cmd" title="Admin Panel">
+                                <ShieldCheck className="w-5 h-5 text-orange-500" />
                             </Link>
-                            <button onClick={logout} className="p-2 rounded-full hover:bg-white/10 text-gray-400 hover:text-white transition-colors" title="Logout">
+                            <button onClick={logout} title="Logout" className="text-slate-400 hover:text-red-500 transition-colors">
                                 <LogOut className="w-5 h-5" />
                             </button>
                         </div>
                     )}
                 </div>
 
+                {/* Mobile/Tablet Controls */}
+                <div className="lg:hidden flex items-center gap-4">
+                    {user && (
+                        <Link href="/cmd" className="p-2 text-orange-500">
+                            <ShieldCheck className="w-6 h-6" />
+                        </Link>
+                    )}
+                    <button 
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        className="p-3 bg-slate-100 dark:bg-white/10 rounded-2xl text-slate-900 dark:text-white transition-all active:scale-95"
+                    >
+                        {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                    </button>
+                </div>
             </div>
+
+            {/* Mobile Menu Overlay */}
+            <AnimatePresence>
+                {isMenuOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="lg:hidden bg-white dark:bg-black border-t border-slate-100 dark:border-white/10 overflow-hidden shadow-2xl"
+                    >
+                        <div className="flex flex-col p-8 gap-8">
+                            {navItems.map((item) => (
+                                <Link
+                                    key={item.name}
+                                    href={item.href}
+                                    className={cn(
+                                        "text-4xl font-black uppercase tracking-tighter transition-all",
+                                        pathname === item.href 
+                                            ? "text-orange-500 translate-x-2" 
+                                            : "text-slate-400 dark:text-slate-700"
+                                    )}
+                                >
+                                    {item.name}
+                                </Link>
+                            ))}
+                            
+                            {user && (
+                                <div className="pt-8 border-t border-slate-100 dark:border-white/10 flex items-center justify-between">
+                                    <span className="font-bold text-slate-500">Admin Active</span>
+                                    <button onClick={logout} className="flex items-center gap-2 font-bold text-red-500">
+                                        <LogOut className="w-5 h-5" /> Logout
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </nav>
     );
 }
