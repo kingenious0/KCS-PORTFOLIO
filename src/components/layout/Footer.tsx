@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { InlineText } from "@/components/admin/InlineText";
-import { BrandInitials } from "@/components/layout/BrandInitials";
+import Image from "next/image";
 
 export function Footer() {
     const currentYear = new Date().getFullYear();
@@ -12,8 +12,13 @@ export function Footer() {
             <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
 
                 <div className="flex items-center gap-2">
-                    <div className="relative w-8 h-8 bg-gradient-to-tr from-orange-500 to-orange-600 rounded-lg overflow-hidden opacity-80 flex items-center justify-center">
-                        <BrandInitials className="text-sm" />
+                    <div className="relative w-8 h-8 bg-slate-100 dark:bg-white/10 rounded-lg overflow-hidden flex items-center justify-center">
+                        <Image
+                            src="/logo.png"
+                            alt="Kingenious Logo"
+                            fill
+                            className="object-contain p-1"
+                        />
                     </div>
                     <span className="font-bold text-md text-white/50 tracking-wide">
                         <InlineText id="brandName" defaultValue="KINGENIOUS" />

@@ -9,7 +9,7 @@ import { useAuth } from "@/lib/AuthContext";
 import { ShieldCheck, LogOut, Menu, X } from "lucide-react";
 import { InlineText } from "@/components/admin/InlineText";
 import { BrandTitleUpdater } from "@/components/layout/BrandTitleUpdater";
-import { BrandInitials } from "@/components/layout/BrandInitials";
+import Image from "next/image";
 
 const navItems = [
     { name: "Home", href: "/" },
@@ -68,8 +68,13 @@ export function Navbar() {
                 
                 {/* Logo Area */}
                 <Link href="/" className="group flex items-center gap-2 md:gap-3" onClick={handleSecretTap}>
-                    <div className="relative w-9 h-9 md:w-10 md:h-10 bg-gradient-to-tr from-orange-500 to-orange-600 rounded-xl overflow-hidden shadow-lg shadow-orange-500/20 transition-all group-hover:scale-105 shrink-0">
-                        <BrandInitials className="text-lg md:text-xl tracking-tighter" />
+                    <div className="relative w-9 h-9 md:w-10 md:h-10 bg-slate-100 dark:bg-white/10 rounded-xl overflow-hidden shadow-lg transition-all group-hover:scale-105 shrink-0">
+                        <Image
+                            src="/logo.png"
+                            alt="Kingenious Logo"
+                            fill
+                            className="object-contain p-1.5"
+                        />
                     </div>
                     <span className="font-black text-base md:text-xl text-slate-900 dark:text-white tracking-tight group-hover:text-orange-500 transition-colors truncate max-w-[120px] xs:max-w-none">
                         <InlineText id="brandName" defaultValue="KINGENIOUS" />
