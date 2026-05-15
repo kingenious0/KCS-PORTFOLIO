@@ -24,12 +24,12 @@ export function AboutSection() {
                         <div className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-slate-200 dark:border-slate-800 shadow-2xl">
                              <EditableImage 
                                 id="aboutImageMain"
-                                defaultSrc="/logo.png"
+                                defaultSrc="/K.C.S LOGO HEAD.png"
                                 alt="About Profile"
                                 fill
                                 priority={true}
                                 sizes="(max-width: 768px) 280px, 400px"
-                                className="object-cover"
+                                className="object-contain p-8"
                             />
                         </div>
                     </div>

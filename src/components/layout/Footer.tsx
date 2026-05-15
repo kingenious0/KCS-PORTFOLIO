@@ -12,12 +12,12 @@ export function Footer() {
             <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
 
                 <div className="flex items-center gap-2">
-                    <div className="relative w-8 h-8 bg-slate-100 dark:bg-white/10 rounded-lg overflow-hidden flex items-center justify-center">
+                    <div className="relative w-12 h-12 flex items-center justify-center">
                         <Image
-                            src="/logo.png"
+                            src="/K.C.S LOGO HEAD.png"
                             alt="Kingenious Logo"
                             fill
-                            className="object-contain p-1"
+                            className="object-contain"
                         />
                     </div>
                     <span className="font-bold text-md text-white/50 tracking-wide">

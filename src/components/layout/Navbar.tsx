@@ -68,15 +68,16 @@ export function Navbar() {
                 
                 {/* Logo Area */}
                 <Link href="/" className="group flex items-center gap-2 md:gap-3" onClick={handleSecretTap}>
-                    <div className="relative w-9 h-9 md:w-10 md:h-10 bg-slate-100 dark:bg-white/10 rounded-xl overflow-hidden shadow-lg transition-all group-hover:scale-105 shrink-0">
+                    <div className="relative w-12 h-12 md:w-16 md:h-16 transition-all group-hover:scale-105 shrink-0">
                         <Image
-                            src="/logo.png"
+                            src="/K.C.S LOGO HEAD.png"
                             alt="Kingenious Logo"
                             fill
-                            className="object-contain p-1.5"
+                            className="object-contain"
+                            priority
                         />
                     </div>
-                    <span className="font-black text-base md:text-xl text-slate-900 dark:text-white tracking-tight group-hover:text-orange-500 transition-colors truncate max-w-[120px] xs:max-w-none">
+                    <span className="font-black text-base md:text-xl text-slate-900 dark:text-white tracking-tight group-hover:text-orange-500 transition-colors whitespace-nowrap">
                         <InlineText id="brandName" defaultValue="KINGENIOUS" />
                     </span>
                 </Link>

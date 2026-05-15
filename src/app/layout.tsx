@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     description: "Engineering secure, high-performance systems at the speed of AI.",
     images: [
       {
-        url: "/og-image.png",
+        url: "/K.C.S LOGO HEAD.png",
         width: 1200,
         height: 630,
         alt: "Kingenious Portfolio",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Elliot Paakow Entsiwah | Full-Stack Developer",
     description: "Engineering secure, high-performance systems at the speed of AI.",
-    images: ["/og-image.png"],
+    images: ["/K.C.S LOGO HEAD.png"],
     creator: "@kingenious",
   },
   robots: {
