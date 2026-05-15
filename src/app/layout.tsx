@@ -40,18 +40,18 @@ export const metadata: Metadata = {
     description: "Engineering secure, high-performance systems at the speed of AI.",
     images: [
       {
-        url: "/K.C.S LOGO HEAD.png",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Kingenious Portfolio",
+        alt: "Kingenious - Elliot Paakow Entsiwah",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Elliot Paakow Entsiwah | Full-Stack Developer",
-    description: "Engineering secure, high-performance systems at the speed of AI.",
-    images: ["/K.C.S LOGO HEAD.png"],
+    title: "Elliot Paakow Entsiwah | Kingenious",
+    description: "Founder & Creative Technologist. Building the future at Kingenious Creative Studio.",
+    images: ["/og-image.png"],
     creator: "@kingenious",
   },
   robots: {
