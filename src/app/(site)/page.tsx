@@ -48,7 +48,7 @@ export default function Home() {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="flex flex-wrap justify-center gap-4 md:gap-6 pt-6"
             >
-              <Link href="/work" className="px-10 py-5 bg-orange-500 text-white rounded-full font-black text-lg hover:bg-orange-600 hover:scale-105 transition-all shadow-xl shadow-orange-500/20">
+              <Link href="/work" className="px-10 py-5 bg-orange-700 text-white rounded-full font-black text-lg hover:bg-orange-800 hover:scale-105 transition-all shadow-xl shadow-orange-700/20">
                  Explore My Work
               </Link>
               <Link href="/contact" className="px-10 py-5 bg-white dark:bg-white/5 text-slate-900 dark:text-white border-2 border-slate-100 dark:border-white/10 rounded-full font-black text-lg hover:bg-slate-50 dark:hover:bg-white/10 transition-all">

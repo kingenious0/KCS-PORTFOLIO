@@ -128,6 +128,7 @@ export function Navbar() {
                     <button 
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                         className="p-2.5 bg-slate-100 dark:bg-white/10 rounded-xl text-slate-900 dark:text-white transition-all active:scale-95"
+                        aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                     >
                         {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
                     </button>

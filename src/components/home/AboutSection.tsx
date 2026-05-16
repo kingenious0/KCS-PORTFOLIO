@@ -42,9 +42,9 @@ export function AboutSection() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                     >
-                        <h3 className="text-sm font-black tracking-[0.3em] text-orange-500 uppercase mb-4">
+                        <span className="block text-sm font-black tracking-[0.3em] text-orange-600 uppercase mb-4">
                             <InlineText id="aboutBadge" defaultValue="ABOUT ME" />
-                        </h3>
+                        </span>
                         <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight mb-8">
                             <InlineText
                                 id="aboutTitle"
@@ -74,10 +74,10 @@ export function AboutSection() {
                         </div>
 
                         <div className="pt-8 flex flex-wrap gap-4">
-                            <Link href="/about" className="px-10 py-4 bg-orange-500 text-white rounded-full font-bold hover:bg-orange-600 transition-all shadow-lg shadow-orange-500/20 inline-flex items-center gap-2 group">
+                            <Link href="/about" className="px-10 py-4 bg-orange-700 text-white rounded-full font-bold hover:bg-orange-800 transition-all shadow-lg shadow-orange-700/20 inline-flex items-center gap-2 group">
                                 Learn More About Me <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                             </Link>
-                            <Link href="/contact" className="px-10 py-4 border-2 border-orange-500/50 text-orange-500 rounded-full font-bold hover:bg-orange-500 hover:text-white transition-all inline-flex items-center gap-2">
+                            <Link href="/contact" className="px-10 py-4 border-2 border-orange-700 text-orange-700 rounded-full font-bold hover:bg-orange-700 hover:text-white transition-all inline-flex items-center gap-2">
                                 Hire Me
                             </Link>
                         </div>
