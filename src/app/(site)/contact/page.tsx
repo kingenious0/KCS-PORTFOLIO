@@ -177,10 +177,10 @@ export default function HireMePage() {
                                             onChange={e => setFormState({...formState, service: e.target.value})}
                                         >
                                             <option value="" disabled className="text-slate-400">Select a service</option>
-                                            <option value="web" className="dark:bg-slate-900">Web Development</option>
-                                            <option value="beats" className="dark:bg-slate-900">Beat Production</option>
-                                            <option value="fullstack" className="dark:bg-slate-900">Full Stack App</option>
-                                            <option value="sound" className="dark:bg-slate-900">Sound Design</option>
+                                            <option value="systems" className="dark:bg-slate-900">Systems Architecture & Software</option>
+                                            <option value="fullstack" className="dark:bg-slate-900">Full-Stack Development</option>
+                                            <option value="beats" className="dark:bg-slate-900">Sonic Branding & Beat Production (KCS)</option>
+                                            <option value="consulting" className="dark:bg-slate-900">Technical Consulting</option>
                                             <option value="other" className="dark:bg-slate-900">Other</option>
                                         </select>
                                     </div>

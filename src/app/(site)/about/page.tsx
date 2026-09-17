@@ -41,7 +41,7 @@ export default function AboutPage() {
                         >
                             <EditableImage 
                                 id="aboutPageMainImage"
-                                defaultSrc="/KCS LION HEAD.png"
+                                defaultSrc="/logo.png"
                                 alt="Elliot Entsiwah Profile"
                                 fill
                                 className="object-cover"
@@ -94,8 +94,8 @@ export default function AboutPage() {
                                 <div className="space-y-12">
                                     <ExperienceItem 
                                         idPrefix="exp1"
-                                        defaultRole="Fullstack Engineer (Independent)"
-                                        defaultCompany="Kingenious Works"
+                                        defaultRole="Founder & Systems Engineer"
+                                        defaultCompany="Kingenious"
                                         defaultPeriod="2025 - Present"
                                         defaultDesc="Architecting complex AI-accelerated platforms. Currently building USTED Scholar and maintaining the USTED Counseling System. Successfully shipped Niouspark and USTED Nav, focusing on high-performance logic and seamless UX."
                                     />
@@ -108,10 +108,10 @@ export default function AboutPage() {
                                     />
                                     <ExperienceItem 
                                         idPrefix="exp3"
-                                        defaultRole="Creative Producer"
-                                        defaultCompany="Kingenious Beats"
+                                        defaultRole="Audio Engineer & Music Producer"
+                                        defaultCompany="KCS (Kingenious Creative Sound)"
                                         defaultPeriod="2020 - 2023"
-                                        defaultDesc="Established a foundation in creative production and sound design. Developed the discipline of building products from scratch, a mindset that now drives my 'frontend-first' engineering approach."
+                                        defaultDesc="Established a foundation in creative production and sound design. Developed the discipline of building products from scratch, a mindset that now drives my engineering approach."
                                     />
                                 </div>
                             </div>

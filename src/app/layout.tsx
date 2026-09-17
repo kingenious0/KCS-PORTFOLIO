@@ -26,16 +26,16 @@ export const metadata: Metadata = {
     default: "Elliot Paakow Entsiwah | Full-Stack Developer & Music Producer",
     template: "%s | Kingenious"
   },
-  description: "Official portfolio of Elliot Paakow Entsiwah (Kingenious), a Full-Stack Web Developer and CEO of Kingenious Creative Studio based in Kumasi, Ghana.",
+  description: "Full-Stack Developer, Systems Architect & Founder of Kingenious, based in Kumasi, Ghana.",
   keywords: ["Elliot Paakow Entsiwah", "Elliot Enstiwah", "Kingenious", "Full-Stack Developer", "Next.js", "Ghana", "Web Development", "Music Producer"],
   authors: [{ name: "Elliot Paakow Entsiwah" }],
   creator: "Elliot Paakow Entsiwah",
-  publisher: "Kingenious Creative Studio",
+  publisher: "Kingenious",
   openGraph: {
     type: "website",
     locale: "en_GH",
     url: "https://kingenious.xyz",
-    siteName: "Kingenious Portfolio",
+    siteName: "Kingenious",
     title: "Elliot Paakow Entsiwah | Full-Stack Developer & Music Producer",
     description: "Engineering secure, high-performance systems at the speed of AI.",
     images: [
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Elliot Paakow Entsiwah | Kingenious",
-    description: "Founder & Creative Technologist. Building the future at Kingenious Creative Studio.",
+    description: "Founder & Systems Architect. Building scalable digital infrastructure.",
     images: ["/og-image.png"],
     creator: "@kingenious",
   },

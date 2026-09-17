@@ -40,7 +40,7 @@ export function BeatForm({ initialData, onSuccess, onCancel }: BeatFormProps) {
         audioUrl: "",
         coverUrl: "",
         stemsAvailable: false,
-        producedBy: "Kingenious",
+        producedBy: "KCS",
         artist: "",
         type: "Beat",
         currency: "GH¢"
@@ -59,7 +59,7 @@ export function BeatForm({ initialData, onSuccess, onCancel }: BeatFormProps) {
                 audioUrl: initialData.audioUrl,
                 coverUrl: initialData.coverUrl,
                 stemsAvailable: initialData.stemsAvailable,
-                producedBy: initialData.producedBy || "Kingenious",
+                producedBy: initialData.producedBy || "KCS",
                 artist: initialData.artist || "",
                 type: initialData.type || "Beat"
             });
@@ -218,7 +218,7 @@ export function BeatForm({ initialData, onSuccess, onCancel }: BeatFormProps) {
                         audioUrl: "",
                         coverUrl: "",
                         stemsAvailable: false,
-                        producedBy: "Kingenious",
+                        producedBy: "KCS",
                         artist: "",
                         type: "Beat",
                         currency: "GH¢"

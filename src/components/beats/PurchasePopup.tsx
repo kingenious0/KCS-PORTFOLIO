@@ -69,7 +69,7 @@ export function PurchasePopup({ isOpen, onClose, beatTitle, beatPrice }: Purchas
                                     className="flex-1 shadoow-lg shadow-neon-blue/20"
                                     onClick={() => {
                                         // Placeholder for actual checkout logic
-                                        window.open("https://wa.me/233555555555?text=I%20want%20to%20buy%20" + encodeURIComponent(beatTitle), "_blank");
+                                        window.open("https://wa.me/233597626090?text=I%20want%20to%20buy%20" + encodeURIComponent(beatTitle), "_blank");
                                     }}
                                 >
                                     Buy Now

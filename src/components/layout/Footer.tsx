@@ -14,7 +14,7 @@ export function Footer() {
                 <div className="flex items-center gap-2">
                     <div className="relative w-12 h-12 flex items-center justify-center">
                         <Image
-                            src="/K.C.S LOGO HEAD.png"
+                            src="/logo.png"
                             alt="Kingenious Logo"
                             fill
                             className="object-contain"

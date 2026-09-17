@@ -24,7 +24,7 @@ export function AboutSection() {
                         <div className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-slate-200 dark:border-slate-800 shadow-2xl">
                              <EditableImage 
                                 id="aboutImageMain"
-                                defaultSrc="/K.C.S LOGO HEAD.png"
+                                defaultSrc="/logo.png"
                                 alt="About Profile"
                                 fill
                                 priority={true}

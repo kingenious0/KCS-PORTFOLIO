@@ -70,7 +70,7 @@ export function Navbar() {
                 <Link href="/" className="group flex items-center gap-2 md:gap-3" onClick={handleSecretTap}>
                     <div className="relative w-12 h-12 md:w-16 md:h-16 transition-all group-hover:scale-105 shrink-0">
                         <Image
-                            src="/K.C.S LOGO HEAD.png"
+                            src="/logo.png"
                             alt="Kingenious Logo"
                             fill
                             className="object-contain"

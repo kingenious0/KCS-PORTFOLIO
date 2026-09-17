@@ -1,6 +1,6 @@
-# KINGENIOUS WORKS | Beatmaker & Developer Portfolio
+# Kingenious | Portfolio & Systems
 
-A high-performance, futuristic portfolio built with Next.js 15, Tailwind CSS, and Firebase.
+A high-performance, futuristic portfolio built with Next.js 16, Tailwind CSS, and Firebase.
 
 ## Features
 

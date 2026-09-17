@@ -9,7 +9,7 @@ export function BrandTitleUpdater() {
 
     useEffect(() => {
         if (brandName) {
-            document.title = `${brandName} | Beatmaker & Developer`;
+            document.title = `${brandName} | Software & Systems`;
         }
     }, [brandName]);
 
