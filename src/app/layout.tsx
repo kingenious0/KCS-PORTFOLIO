@@ -23,7 +23,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Elliot Paakow Entsiwah | Full-Stack Developer & Music Producer",
+    default: "Elliot Paakow Entsiwah | Systems Architect & Developer",
     template: "%s | Kingenious"
   },
   description: "Full-Stack Developer, Systems Architect & Founder of Kingenious, based in Kumasi, Ghana.",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     locale: "en_GH",
     url: "https://kingenious.xyz",
     siteName: "Kingenious",
-    title: "Elliot Paakow Entsiwah | Full-Stack Developer & Music Producer",
+    title: "Elliot Paakow Entsiwah | Systems Architect & Developer",
     description: "Engineering secure, high-performance systems at the speed of AI.",
     images: [
       {
